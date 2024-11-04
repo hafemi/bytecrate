@@ -56,9 +56,10 @@ export function handleGenerationButtonClicked(values: MazeGenerationConfig): voi
     values.pathColor,
     values.wallColor,
     values.solutionColor,
-    values.entryColor,
+    values.entryColor,  
     values.exitColor
   );
+
   values.setMaze(mazeGenerator);
   mazeGenerator.generateMaze();
 }
@@ -113,6 +114,49 @@ export class MazeGenerator {
       await this.solveMaze(this.entryPoint.row, this.entryPoint.col);
       this.updateMazeCanvas(this.showSolution, this.showEntryExit);
       this.isGenerating = false;
+    }
+  }
+
+  async solveMaze(startRow: number, startCol: number): Promise<void> {
+    if (this.startingPoint !== StartingPoint.None && (await this.explore(startRow, startCol))) {
+      this.maze[this.exitPoint.row][this.exitPoint.col] = MazeCellValue.Solution;
+    }
+  }
+
+  async explore(row: number, col: number): Promise<boolean> {
+    const directionOffsets: { [key: string]: Coordinate } = {
+      up: { row: -1, col: 0 },
+      down: { row: 1, col: 0 },
+      left: { row: 0, col: -1 },
+      right: { row: 0, col: 1 },
+    };
+    const directions = ['up', 'down', 'left', 'right'];
+    if (!isValid(row, col, this.maze) || this.maze[row][col] !== MazeCellValue.Path || !this.isGenerating) {
+      return false;
+    }
+
+    this.maze[row][col] = MazeCellValue.Solution;
+    if (this.showSolution && this.animate) {
+      this.updateMazeCanvas(this.showSolution, false);
+      await sleep(this.animationSpeed);
+    }
+
+    if (row === this.exitPoint.row && col === this.exitPoint.col) {
+      return true;
+    }
+
+    for (const direction of directions) {
+      const { row: dRow, col: dCol } = directionOffsets[direction];
+      if (await this.explore(row + dRow, col + dCol)) {
+        return true;
+      }
+    }
+
+    this.maze[row][col] = MazeCellValue.Path;
+    return false;
+
+    function isValid(row: number, col: number, maze: number[][]): boolean {
+      return row >= 0 && row < maze.length && col >= 0 && col < maze[row].length;
     }
   }
 
@@ -194,49 +238,6 @@ export class MazeGenerator {
         break;
       default:
         break;
-    }
-  }
-
-  async solveMaze(startRow: number, startCol: number): Promise<void> {
-    if (this.startingPoint !== StartingPoint.None && (await this.explore(startRow, startCol))) {
-      this.maze[this.exitPoint.row][this.exitPoint.col] = MazeCellValue.Solution;
-    }
-  }
-
-  async explore(row: number, col: number): Promise<boolean> {
-    const directionOffsets: { [key: string]: Coordinate } = {
-      up: { row: -1, col: 0 },
-      down: { row: 1, col: 0 },
-      left: { row: 0, col: -1 },
-      right: { row: 0, col: 1 },
-    };
-    const directions = ['up', 'down', 'left', 'right'];
-    if (!isValid(row, col, this.maze) || this.maze[row][col] !== MazeCellValue.Path || !this.isGenerating) {
-      return false;
-    }
-
-    this.maze[row][col] = MazeCellValue.Solution;
-    if (this.showSolution && this.animate) {
-      this.updateMazeCanvas(this.showSolution, false);
-      await sleep(this.animationSpeed);
-    }
-
-    if (row === this.exitPoint.row && col === this.exitPoint.col) {
-      return true;
-    }
-
-    for (const direction of directions) {
-      const { row: dRow, col: dCol } = directionOffsets[direction];
-      if (await this.explore(row + dRow, col + dCol)) {
-        return true;
-      }
-    }
-
-    this.maze[row][col] = MazeCellValue.Path;
-    return false;
-
-    function isValid(row: number, col: number, maze: number[][]): boolean {
-      return row >= 0 && row < maze.length && col >= 0 && col < maze[row].length;
     }
   }
 
