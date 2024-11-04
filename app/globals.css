@@ -5,7 +5,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #666666;
     --foreground: #ededed;
   }
 }
@@ -39,4 +39,34 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+input::placeholder {
+  /* Most modern browsers support this now. */
+  color: rgb(255, 255, 255);
+  opacity: 0.8;
+}
+
+input {
+  font-size: 1em;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+button {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: background-color 0.3s;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+button:hover {
+  background-color: #8f8f8f;
 }
