@@ -41,11 +41,11 @@ interface Coordinate {
 }
 
 export function handleGenerationButtonClicked(values: MazeGenerationConfig): void {
-  const isValid = validateElements(values);
+  const isValid = validateElementsDimensions(values);
   if (!isValid) return;
   if (values.maze) values.maze.isGenerating = false;
 
-  const mazeGenerator = new MazeGenerator(
+  const maze = new MazeGenerator(
     values.width,
     values.height,
     values.startingPoint,
@@ -56,12 +56,12 @@ export function handleGenerationButtonClicked(values: MazeGenerationConfig): voi
     values.pathColor,
     values.wallColor,
     values.solutionColor,
-    values.entryColor,  
+    values.entryColor,
     values.exitColor
   );
 
-  values.setMaze(mazeGenerator);
-  mazeGenerator.generateMaze();
+  values.setMaze(maze);
+  maze.generateMaze();
 }
 
 export class MazeGenerator {
@@ -102,8 +102,8 @@ export class MazeGenerator {
   }
 
   async generateMaze(): Promise<void> {
-    const x = this.randomOddNumber(1, this.width - 2);
-    const y = this.randomOddNumber(1, this.height - 2);
+    const x = this.getRandomOddNumber(1, this.width - 2);
+    const y = this.getRandomOddNumber(1, this.height - 2);
 
     this.maze = this.initMaze();
     this.maze[y][x] = MazeCellValue.Path;
@@ -118,12 +118,12 @@ export class MazeGenerator {
   }
 
   async solveMaze(startRow: number, startCol: number): Promise<void> {
-    if (this.startingPoint !== StartingPoint.None && (await this.explore(startRow, startCol))) {
+    if (this.startingPoint !== StartingPoint.None && (await this.findSolutionPath(startRow, startCol))) {
       this.maze[this.exitPoint.row][this.exitPoint.col] = MazeCellValue.Solution;
     }
   }
 
-  async explore(row: number, col: number): Promise<boolean> {
+  async findSolutionPath(row: number, col: number): Promise<boolean> {
     const directionOffsets: { [key: string]: Coordinate } = {
       up: { row: -1, col: 0 },
       down: { row: 1, col: 0 },
@@ -147,7 +147,7 @@ export class MazeGenerator {
 
     for (const direction of directions) {
       const { row: dRow, col: dCol } = directionOffsets[direction];
-      if (await this.explore(row + dRow, col + dCol)) {
+      if (await this.findSolutionPath(row + dRow, col + dCol)) {
         return true;
       }
     }
@@ -252,13 +252,13 @@ export class MazeGenerator {
 
     for (let y = 0; y < this.maze.length; y++) {
       for (let x = 0; x < this.maze[y].length; x++) {
-        this.setFillColor({ ctx, coordinate: { row: y, col: x }, showSolution, showEntryExit });
+        this.setCanvasFillColor({ ctx, coordinate: { row: y, col: x }, showSolution, showEntryExit });
         ctx.fillRect(x * multiplier, y * multiplier, multiplier, multiplier);
       }
     }
   }
 
-  setFillColor(options: {
+  setCanvasFillColor(options: {
     ctx: CanvasRenderingContext2D;
     coordinate: Coordinate;
     showSolution: boolean;
@@ -295,13 +295,19 @@ export class MazeGenerator {
     return value % 2 === 0 ? value + 1 : value;
   }
 
-  randomOddNumber(min: number, max: number): number {
+  getRandomOddNumber(min: number, max: number): number {
     const num = Math.floor(Math.random() * (max - min)) + min;
     return num % 2 === 0 ? num + 1 : num;
   }
 }
 
-function validateElements({ width, height, invalidElements, minValues, maxValues }: MazeGenerationConfig): boolean {
+function validateElementsDimensions({
+  width,
+  height,
+  invalidElements,
+  minValues,
+  maxValues,
+}: MazeGenerationConfig): boolean {
   if (invalidElements.length > 0) return false;
 
   // prettier-ignore

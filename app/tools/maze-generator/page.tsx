@@ -49,7 +49,7 @@ export default function Home() {
     setInvalidElements(invalidElements.filter((id) => id !== elementId));
   };
 
-  const getNumber = (value: string): number => {
+  const getNumberFromString = (value: string): number => {
     return isNaN(parseInt(value)) ? 0 : parseInt(value);
   };
 
@@ -229,8 +229,8 @@ export default function Home() {
           <button
             onClick={() =>
               handleGenerationButtonClicked({
-                width: getNumber(width),
-                height: getNumber(height),
+                width: getNumberFromString(width),
+                height: getNumberFromString(height),
                 invalidElements,
                 minValues,
                 maxValues,
