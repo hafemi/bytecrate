@@ -26,14 +26,15 @@
 
 .heading {
   text-align: center;
-  font-size: 50px; /* Adjust the size as needed */
-  margin-bottom: 20px; /* Add some space below the heading */
+  font-size: 50px;
+  margin-bottom: 20px;
 }
 
-.invalid {
-  color: red;
-}
-
-.hidden {
-  display: none;
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 100px;
 }

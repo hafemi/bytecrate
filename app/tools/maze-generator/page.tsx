@@ -1,7 +1,11 @@
 'use client';
-import { handleGenerationButtonClicked, MazeGenerator, StartingPoint } from '@/components/tools/maze-generator/button-handler';
+import {
+  handleGenerationButtonClicked,
+  MazeGenerator,
+  StartingPoint,
+} from '@/components/tools/maze-generator/button-handler';
 import CanvaColors from '@/components/tools/maze-generator/canva-colors';
-import Input from '@/components/tools/maze-generator/input';
+import { InputFields, Checkboxes } from '@/components/tools/maze-generator/input';
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
@@ -30,33 +34,38 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
         <h1 className={styles.heading}>MAZE GENERATOR</h1>
-        <Input
-          invalidElements={invalidElements}
-          width={width}
-          height={height}
-          animateCheckbox={animateCheckbox}
-          showEntryExitCheckbox={showEntryExitCheckbox}
-          showSolutionCheckbox={showSolutionCheckbox}
-          startingPoint={startingPoint}
-          maze={maze}
-          setInvalidElements={setInvalidElements}
-          setWidth={setWidth}
-          setHeight={setHeight}
-          setAnimationSpeed={setAnimationSpeed}
-          setShowSolutionCheckbox={setShowSolutionCheckbox}
-          setShowEntryExitCheckbox={setShowEntryExitCheckbox}
-          setAnimateCheckbox={setAnimateCheckbox}
-          setStartingPoint={setStartingPoint}
-        />
-        <CanvaColors
-          showSolutionCheckbox={showSolutionCheckbox}
-          showEntryExitCheckbox={showEntryExitCheckbox}
-          setWallColor={setWallColor}
-          setPathColor={setPathColor}
-          setSolutionColor={setSolutionColor}
-          setEntryColor={setEntryColor}
-          setExitColor={setExitColor}
-        />
+        <div className={styles.controls}>
+          <InputFields
+            invalidElements={invalidElements}
+            width={width}
+            height={height}
+            animateCheckbox={animateCheckbox}
+            setInvalidElements={setInvalidElements}
+            setWidth={setWidth}
+            setHeight={setHeight}
+            setAnimationSpeed={setAnimationSpeed}
+          />
+          <Checkboxes
+            startingPoint={startingPoint}
+            showEntryExitCheckbox={showEntryExitCheckbox}
+            showSolutionCheckbox={showSolutionCheckbox}
+            animateCheckbox={animateCheckbox}
+            setStartingPoint={setStartingPoint}
+            setShowSolutionCheckbox={setShowSolutionCheckbox}
+            setShowEntryExitCheckbox={setShowEntryExitCheckbox}
+            setAnimateCheckbox={setAnimateCheckbox}
+            maze={maze}
+          />
+          <CanvaColors
+            showSolutionCheckbox={showSolutionCheckbox}
+            showEntryExitCheckbox={showEntryExitCheckbox}
+            setWallColor={setWallColor}
+            setPathColor={setPathColor}
+            setSolutionColor={setSolutionColor}
+            setEntryColor={setEntryColor}
+            setExitColor={setExitColor}
+          />
+        </div>
         {/* buttons do not have their own component since that would
         lead to a lot of prop drilling */}
         <div>

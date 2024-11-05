@@ -25,8 +25,8 @@
 
 .heading {
   text-align: center;
-  font-size: 50px; /* Adjust the size as needed */
-  margin-bottom: 20px; /* Add some space below the heading */
+  font-size: 50px;
+  margin-bottom: 20px;
 }
 
 .invalid {
