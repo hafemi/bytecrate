@@ -215,9 +215,8 @@ export class MazeGenerator {
         StartingPoint.TopAndBottom,
         StartingPoint.LeftAndRight,
         StartingPoint.DiagonalTopLeft,
-        StartingPoint.DiagonalLeftTop,
-        StartingPoint.None,
-      ][Math.floor(Math.random() * 5)];
+        StartingPoint.DiagonalLeftTop
+      ][Math.floor(Math.random() * 4)];
 
     switch (startingPoint) {
       case StartingPoint.TopAndBottom:
