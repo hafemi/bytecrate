@@ -11,5 +11,5 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 - Hangman (planned)
 
 ### Tools
-- Maze Generator (work in progress by Hafemi
+- Maze Generator (work in progress by Hafemi)
 - Random Number Generator (planned)
