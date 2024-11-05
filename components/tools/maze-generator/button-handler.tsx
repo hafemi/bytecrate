@@ -1,3 +1,4 @@
+import { maxValues, minValues } from '@/components/tools/maze-generator/input';
 import { Dispatch, SetStateAction } from 'react';
 
 enum MazeCellValue {
@@ -19,8 +20,6 @@ interface MazeGenerationConfig {
   width: number;
   height: number;
   invalidElements: string[];
-  minValues: Record<string, number>;
-  maxValues: Record<string, number>;
   startingPoint: StartingPoint;
   animateCheckbox: boolean;
   animationSpeed: number;
@@ -301,13 +300,7 @@ export class MazeGenerator {
   }
 }
 
-function validateElementsDimensions({
-  width,
-  height,
-  invalidElements,
-  minValues,
-  maxValues,
-}: MazeGenerationConfig): boolean {
+function validateElementsDimensions({ width, height, invalidElements }: MazeGenerationConfig): boolean {
   if (invalidElements.length > 0) return false;
 
   // prettier-ignore
