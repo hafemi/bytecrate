@@ -109,7 +109,7 @@ export class MazeGenerator {
   async generateMaze(): Promise<void> {
     const x = this.getRandomOddNumber(1, this.width - 2);
     const y = this.getRandomOddNumber(1, this.height - 2);
-    
+
     this.maze = this.initMaze();
     this.maze[y][x] = MazeCellValue.Path;
     await this.awaitMazeCarving(x, y);
@@ -121,7 +121,7 @@ export class MazeGenerator {
       this.isGenerating = false;
     }
   }
-  
+
   async awaitMazeCarving(x: number, y: number): Promise<void> {
     const promises = [];
 
@@ -231,7 +231,7 @@ export class MazeGenerator {
         StartingPoint.TopAndBottom,
         StartingPoint.LeftAndRight,
         StartingPoint.DiagonalTopLeft,
-        StartingPoint.DiagonalLeftTop
+        StartingPoint.DiagonalLeftTop,
       ][Math.floor(Math.random() * 4)];
 
     switch (startingPoint) {
@@ -315,14 +315,19 @@ export class MazeGenerator {
   }
 }
 
-function validateElementsDimensions({ width, height, startDirections, invalidElements }: MazeGenerationConfig): boolean {
-  if (invalidElements.length > 0) return false;
+function validateElementsDimensions(options: {
+  width: number;
+  height: number;
+  startDirections: number;
+  invalidElements: string[];
+}): boolean {
+  if (options.invalidElements.length > 0) return false;
 
   // prettier-ignore
   const dimensions = [
-    { value: width, min: minValues.width, max: maxValues.width },
-    { value: height, min: minValues.height, max: maxValues.height },
-    { value: startDirections, min: minValues.startDirections, max: maxValues.startDirections },
+    { value: options.width, min: minValues.width, max: maxValues.width },
+    { value: options.height, min: minValues.height, max: maxValues.height },
+    { value: options.startDirections, min: minValues.startDirections, max: maxValues.startDirections },
   ];
 
   for (const { value, min, max } of dimensions) {

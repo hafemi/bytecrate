@@ -11,11 +11,11 @@ import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
 
 export default function Home() {
-  const [width, setWidth] = useState('');
-  const [height, setHeight] = useState('');
-  const [startingPoint, setStartingPoint] = useState(StartingPoint.TopAndBottom);
+  const [width, setWidth] = useState(15);
+  const [height, setHeight] = useState(15);
   const [animationSpeed, setAnimationSpeed] = useState(0);
-  const [startDirections, setStartDirections] = useState('1')
+  const [startDirections, setStartDirections] = useState(1);
+  const [startingPoint, setStartingPoint] = useState(StartingPoint.TopAndBottom);
   
   const [animateCheckbox, setAnimateCheckbox] = useState(false);
   const [showSolutionCheckbox, setShowSolutionCheckbox] = useState(false);
@@ -29,10 +29,6 @@ export default function Home() {
   
   const [invalidElements, setInvalidElements] = useState<string[]>([]);
   const [maze, setMaze] = useState<MazeGenerator | null>(null);
-
-  const getNumberFromString = (value: string): number => {
-    return isNaN(parseInt(value)) ? 0 : parseInt(value);
-  };
 
   return (
     <div className={styles.page}>
@@ -78,9 +74,9 @@ export default function Home() {
           <button
             onClick={() =>
               handleGenerationButtonClicked({
-                width: getNumberFromString(width),
-                height: getNumberFromString(height),
-                startDirections: getNumberFromString(startDirections),
+                width: width,
+                height: height,
+                startDirections: startDirections,
                 invalidElements,
                 startingPoint,
                 animateCheckbox,

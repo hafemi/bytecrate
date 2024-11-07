@@ -4,15 +4,15 @@ import React from 'react';
 
 interface InputFieldsProps {
   invalidElements: string[];
-  width: string;
-  height: string;
-  startDirections: string;
+  width: number;
+  height: number;
+  startDirections: number;
   animateCheckbox: boolean;
   setInvalidElements: React.Dispatch<React.SetStateAction<string[]>>;
-  setWidth: React.Dispatch<React.SetStateAction<string>>;
-  setHeight: React.Dispatch<React.SetStateAction<string>>;
+  setWidth: React.Dispatch<React.SetStateAction<number>>;
+  setHeight: React.Dispatch<React.SetStateAction<number>>;
   setAnimationSpeed: React.Dispatch<React.SetStateAction<number>>;
-  setStartDirections: React.Dispatch<React.SetStateAction<string>>;
+  setStartDirections: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface CheckboxesProps {
@@ -64,9 +64,10 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         placeholder={`${minValues.width}-${maxValues.width}`}
         value={width}
         onChange={(e) => {
-          setWidth(e.target.value);
+          const value = getNumberFromString(e.target.value);
+          setWidth(value);
           validateElement({
-            value: parseInt(e.target.value),
+            value: value,
             min: minValues.width,
             max: maxValues.width,
             elementId: 'width',
@@ -87,9 +88,10 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         placeholder={`${minValues.height}-${maxValues.height}`}
         value={height}
         onChange={(e) => {
-          setHeight(e.target.value);
+          const value = getNumberFromString(e.target.value);
+          setHeight(value);
           validateElement({
-            value: parseInt(e.target.value),
+            value: value,
             min: minValues.height,
             max: maxValues.height,
             elementId: 'height',
@@ -119,9 +121,10 @@ export const InputFields: React.FC<InputFieldsProps> = ({
           placeholder={`${minValues.startDirections}-${maxValues.startDirections}`}
           value={startDirections}
           onChange={(e) => {
-            setStartDirections(e.target.value);
+            const value = getNumberFromString(e.target.value);
+            setStartDirections(value);
             validateElement({
-              value: parseInt(e.target.value),
+              value: value,
               min: minValues.startDirections,
               max: maxValues.startDirections,
               elementId: 'startDirections',
@@ -206,14 +209,7 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
   );
 };
 
-function validateElement({
-  value,
-  min,
-  max,
-  elementId,
-  setInvalidElements,
-  invalidElements,
-}: {
+function validateElement(options: {
   value: number;
   min: number;
   max: number;
@@ -221,10 +217,14 @@ function validateElement({
   setInvalidElements: React.Dispatch<React.SetStateAction<string[]>>;
   invalidElements: string[];
 }): void {
-  if ((!isNaN(value) && value < min) || value > max) {
-    setInvalidElements([...invalidElements, elementId]);
+  if (options.value < options.min || options.value > options.max) {
+    options.setInvalidElements([...options.invalidElements, options.elementId]);
     return;
   }
 
-  setInvalidElements(invalidElements.filter((id) => id !== elementId));
+  options.setInvalidElements(options.invalidElements.filter((id) => id !== options.elementId));
+} 
+
+function getNumberFromString(value: string): number {
+  return isNaN(parseInt(value)) ? 0 : parseInt(value);
 }
