@@ -4,15 +4,15 @@ import React from 'react';
 
 interface InputFieldsProps {
   invalidElements: string[];
-  width: number;
-  height: number;
-  startDirections: number;
+  width: string;
+  height: string;
+  startDirections: string;
   animateCheckbox: boolean;
   setInvalidElements: React.Dispatch<React.SetStateAction<string[]>>;
-  setWidth: React.Dispatch<React.SetStateAction<number>>;
-  setHeight: React.Dispatch<React.SetStateAction<number>>;
-  setAnimationSpeed: React.Dispatch<React.SetStateAction<number>>;
-  setStartDirections: React.Dispatch<React.SetStateAction<number>>;
+  setWidth: React.Dispatch<React.SetStateAction<string>>;
+  setHeight: React.Dispatch<React.SetStateAction<string>>;
+  setAnimationSpeed: React.Dispatch<React.SetStateAction<string>>;
+  setStartDirections: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface CheckboxesProps {
@@ -64,10 +64,9 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         placeholder={`${minValues.width}-${maxValues.width}`}
         value={width}
         onChange={(e) => {
-          const value = getNumberFromString(e.target.value);
-          setWidth(value);
+          setWidth(e.target.value);
           validateElement({
-            value: value,
+            value: getNumberFromString(e.target.value),
             min: minValues.width,
             max: maxValues.width,
             elementId: 'width',
@@ -88,10 +87,9 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         placeholder={`${minValues.height}-${maxValues.height}`}
         value={height}
         onChange={(e) => {
-          const value = getNumberFromString(e.target.value);
-          setHeight(value);
+          setHeight(e.target.value);
           validateElement({
-            value: value,
+            value: getNumberFromString(e.target.value),
             min: minValues.height,
             max: maxValues.height,
             elementId: 'height',
@@ -107,7 +105,7 @@ export const InputFields: React.FC<InputFieldsProps> = ({
           id="speedInMS"
           type="number"
           placeholder="100"
-          onChange={(e) => setAnimationSpeed(parseInt(e.target.value))}
+          onChange={(e) => setAnimationSpeed(e.target.value)}
         />
         <br />
         <label htmlFor="startDirections">Start Directions</label>
@@ -121,10 +119,9 @@ export const InputFields: React.FC<InputFieldsProps> = ({
           placeholder={`${minValues.startDirections}-${maxValues.startDirections}`}
           value={startDirections}
           onChange={(e) => {
-            const value = getNumberFromString(e.target.value);
-            setStartDirections(value);
+            setStartDirections(e.target.value);
             validateElement({
-              value: value,
+              value: getNumberFromString(e.target.value),
               min: minValues.startDirections,
               max: maxValues.startDirections,
               elementId: 'startDirections',
@@ -225,6 +222,6 @@ function validateElement(options: {
   options.setInvalidElements(options.invalidElements.filter((id) => id !== options.elementId));
 } 
 
-function getNumberFromString(value: string): number {
+export function getNumberFromString(value: string): number {
   return isNaN(parseInt(value)) ? 0 : parseInt(value);
 }

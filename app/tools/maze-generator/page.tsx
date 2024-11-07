@@ -5,16 +5,16 @@ import {
   StartingPoint,
 } from '@/components/tools/maze-generator/button-handler';
 import CanvaColors from '@/components/tools/maze-generator/canva-colors';
-import { InputFields, Checkboxes } from '@/components/tools/maze-generator/input';
+import { InputFields, Checkboxes, getNumberFromString } from '@/components/tools/maze-generator/input';
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
 
 export default function Home() {
-  const [width, setWidth] = useState(15);
-  const [height, setHeight] = useState(15);
-  const [animationSpeed, setAnimationSpeed] = useState(0);
-  const [startDirections, setStartDirections] = useState(1);
+  const [width, setWidth] = useState('');
+  const [height, setHeight] = useState('');
+  const [animationSpeed, setAnimationSpeed] = useState('');
+  const [startDirections, setStartDirections] = useState('1');
   const [startingPoint, setStartingPoint] = useState(StartingPoint.TopAndBottom);
   
   const [animateCheckbox, setAnimateCheckbox] = useState(false);
@@ -69,18 +69,18 @@ export default function Home() {
           />
         </div>
         {/* buttons do not have their own component since that would
-        lead to a lot of prop drilling */}
+        lead to a lot of argument passing */}
         <div>
           <button
             onClick={() =>
               handleGenerationButtonClicked({
-                width: width,
-                height: height,
-                startDirections: startDirections,
+                width: getNumberFromString(width),
+                height: getNumberFromString(height),
+                startDirections: getNumberFromString(startDirections),
+                animationSpeed: getNumberFromString(animationSpeed),
                 invalidElements,
                 startingPoint,
                 animateCheckbox,
-                animationSpeed,
                 showSolutionCheckbox,
                 showEntryExitCheckbox,
                 pathColor,
