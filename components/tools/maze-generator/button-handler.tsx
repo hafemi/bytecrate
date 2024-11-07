@@ -19,17 +19,21 @@ export enum StartingPoint {
 interface MazeGenerationConfig {
   width: number;
   height: number;
+  startDirections: number;
   invalidElements: string[];
   startingPoint: StartingPoint;
-  animateCheckbox: boolean;
   animationSpeed: number;
+
+  animateCheckbox: boolean;
   showSolutionCheckbox: boolean;
   showEntryExitCheckbox: boolean;
+
   pathColor: string;
   wallColor: string;
   solutionColor: string;
   entryColor: string;
   exitColor: string;
+
   maze: MazeGenerator | null;
   setMaze: Dispatch<SetStateAction<MazeGenerator | null>>;
 }
@@ -47,6 +51,7 @@ export function handleGenerationButtonClicked(values: MazeGenerationConfig): voi
   const maze = new MazeGenerator(
     values.width,
     values.height,
+    values.startDirections,
     values.startingPoint,
     values.animateCheckbox,
     values.animationSpeed,
@@ -72,6 +77,7 @@ export class MazeGenerator {
   constructor(
     public width: number,
     public height: number,
+    public startDirections: number,
     public startingPoint: StartingPoint,
     public animate: boolean,
     public animationSpeed: number,
@@ -103,10 +109,10 @@ export class MazeGenerator {
   async generateMaze(): Promise<void> {
     const x = this.getRandomOddNumber(1, this.width - 2);
     const y = this.getRandomOddNumber(1, this.height - 2);
-
+    
     this.maze = this.initMaze();
     this.maze[y][x] = MazeCellValue.Path;
-    await this.carveMaze(x, y);
+    await this.awaitMazeCarving(x, y);
 
     if (this.isGenerating) {
       this.createEntryAndExitForMaze();
@@ -114,6 +120,16 @@ export class MazeGenerator {
       this.updateMazeCanvas(this.showSolution, this.showEntryExit);
       this.isGenerating = false;
     }
+  }
+  
+  async awaitMazeCarving(x: number, y: number): Promise<void> {
+    const promises = [];
+
+    for (let i = 0; i < this.startDirections; i++) {
+      promises.push(this.carveMaze(x, y));
+    }
+
+    await Promise.all(promises);
   }
 
   async solveMaze(startRow: number, startCol: number): Promise<void> {
@@ -299,13 +315,14 @@ export class MazeGenerator {
   }
 }
 
-function validateElementsDimensions({ width, height, invalidElements }: MazeGenerationConfig): boolean {
+function validateElementsDimensions({ width, height, startDirections, invalidElements }: MazeGenerationConfig): boolean {
   if (invalidElements.length > 0) return false;
 
   // prettier-ignore
   const dimensions = [
     { value: width, min: minValues.width, max: maxValues.width },
     { value: height, min: minValues.height, max: maxValues.height },
+    { value: startDirections, min: minValues.startDirections, max: maxValues.startDirections },
   ];
 
   for (const { value, min, max } of dimensions) {

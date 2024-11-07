@@ -14,15 +14,19 @@ export default function Home() {
   const [width, setWidth] = useState('');
   const [height, setHeight] = useState('');
   const [startingPoint, setStartingPoint] = useState(StartingPoint.TopAndBottom);
-  const [animateCheckbox, setAnimateCheckbox] = useState(false);
   const [animationSpeed, setAnimationSpeed] = useState(0);
+  const [startDirections, setStartDirections] = useState('1')
+  
+  const [animateCheckbox, setAnimateCheckbox] = useState(false);
   const [showSolutionCheckbox, setShowSolutionCheckbox] = useState(false);
   const [showEntryExitCheckbox, setShowEntryExitCheckbox] = useState(false);
+  
   const [pathColor, setPathColor] = useState('#FFFFFF');
   const [wallColor, setWallColor] = useState('#000000');
   const [solutionColor, setSolutionColor] = useState('#FF0000');
   const [entryColor, setEntryColor] = useState('#00FF00');
   const [exitColor, setExitColor] = useState('#FF0000');
+  
   const [invalidElements, setInvalidElements] = useState<string[]>([]);
   const [maze, setMaze] = useState<MazeGenerator | null>(null);
 
@@ -39,11 +43,13 @@ export default function Home() {
             invalidElements={invalidElements}
             width={width}
             height={height}
+            startDirections={startDirections}
             animateCheckbox={animateCheckbox}
             setInvalidElements={setInvalidElements}
             setWidth={setWidth}
             setHeight={setHeight}
             setAnimationSpeed={setAnimationSpeed}
+            setStartDirections={setStartDirections}
           />
           <Checkboxes
             startingPoint={startingPoint}
@@ -74,6 +80,7 @@ export default function Home() {
               handleGenerationButtonClicked({
                 width: getNumberFromString(width),
                 height: getNumberFromString(height),
+                startDirections: getNumberFromString(startDirections),
                 invalidElements,
                 startingPoint,
                 animateCheckbox,

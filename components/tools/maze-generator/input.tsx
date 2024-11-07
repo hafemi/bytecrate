@@ -6,11 +6,13 @@ interface InputFieldsProps {
   invalidElements: string[];
   width: string;
   height: string;
+  startDirections: string;
   animateCheckbox: boolean;
   setInvalidElements: React.Dispatch<React.SetStateAction<string[]>>;
   setWidth: React.Dispatch<React.SetStateAction<string>>;
   setHeight: React.Dispatch<React.SetStateAction<string>>;
   setAnimationSpeed: React.Dispatch<React.SetStateAction<number>>;
+  setStartDirections: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface CheckboxesProps {
@@ -28,22 +30,26 @@ interface CheckboxesProps {
 export const minValues: Record<string, number> = {
   width: 5,
   height: 5,
+  startDirections: 1,
 };
 
 export const maxValues: Record<string, number> = {
   width: 150,
   height: 150,
+  startDirections: 4,
 };
 
 export const InputFields: React.FC<InputFieldsProps> = ({
   width,
   height,
+  startDirections,
   animateCheckbox,
   invalidElements,
   setWidth,
   setHeight,
   setAnimationSpeed,
   setInvalidElements,
+  setStartDirections,
 }) => {
   return (
     <div>
@@ -100,6 +106,29 @@ export const InputFields: React.FC<InputFieldsProps> = ({
           type="number"
           placeholder="100"
           onChange={(e) => setAnimationSpeed(parseInt(e.target.value))}
+        />
+        <br />
+        <label htmlFor="startDirections">Start Directions</label>
+        <input
+          className={`
+          ${invalidElements.includes('startDirections') ? styles.invalid : ''}
+          ${styles.input}
+        `}
+          id="startDirections"
+          type="string"
+          placeholder={`${minValues.startDirections}-${maxValues.startDirections}`}
+          value={startDirections}
+          onChange={(e) => {
+            setStartDirections(e.target.value);
+            validateElement({
+              value: parseInt(e.target.value),
+              min: minValues.startDirections,
+              max: maxValues.startDirections,
+              elementId: 'startDirections',
+              setInvalidElements,
+              invalidElements,
+            });
+          }}
         />
       </div>
     </div>
