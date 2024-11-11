@@ -33,6 +33,7 @@ export default function Home() {
 
   return (
     <div className={globalStyles.page}>
+      <title>ByteBay - Maze Generator</title>
       <main className={globalStyles.main}>
         <h1 className={globalStyles.heading}>MAZE GENERATOR</h1>
         <div className={styles.inputGroup}>
