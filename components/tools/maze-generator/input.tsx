@@ -57,7 +57,7 @@ export const InputFields: React.FC<InputFieldsProps> = ({
       <input
         className={`
           ${invalidElements.includes('width') ? styles.invalid : ''}
-          ${styles.input}
+          ${width == '' ? styles.emptyInput : styles.input}
         `}
         id="width"
         type="number"
@@ -80,7 +80,7 @@ export const InputFields: React.FC<InputFieldsProps> = ({
       <input
         className={`
           ${invalidElements.includes('height') ? styles.invalid : ''}
-          ${styles.input}
+          ${height == '' ? styles.emptyInput : styles.input}
         `}
         id="height"
         type="number"
@@ -101,19 +101,14 @@ export const InputFields: React.FC<InputFieldsProps> = ({
       <br />
       <div className={!animateCheckbox ? styles.hidden : ''}>
         <label htmlFor="speedInMS">Speed (ms)</label>
-        <input
-          id="speedInMS"
-          type="number"
-          placeholder="100"
-          onChange={(e) => setAnimationSpeed(e.target.value)}
-        />
+        <input id="speedInMS" type="number" placeholder="100" onChange={(e) => setAnimationSpeed(e.target.value)} />
         <br />
         <label htmlFor="startDirections">Start Directions</label>
         <input
           className={`
           ${invalidElements.includes('startDirections') ? styles.invalid : ''}
-          ${styles.input}
-        `}
+          ${startDirections == '' ? styles.emptyInput : styles.input}
+          `}
           id="startDirections"
           type="string"
           placeholder={`${minValues.startDirections}-${maxValues.startDirections}`}
@@ -220,7 +215,7 @@ function validateElement(options: {
   }
 
   options.setInvalidElements(options.invalidElements.filter((id) => id !== options.elementId));
-} 
+}
 
 export function getNumberFromString(value: string): number {
   return isNaN(parseInt(value)) ? 0 : parseInt(value);

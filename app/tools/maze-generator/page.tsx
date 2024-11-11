@@ -9,6 +9,7 @@ import { InputFields, Checkboxes, getNumberFromString } from '@/components/tools
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
+import globalStyles from '@/app/page.module.css';
 
 export default function Home() {
   const [width, setWidth] = useState('');
@@ -31,9 +32,9 @@ export default function Home() {
   const [maze, setMaze] = useState<MazeGenerator | null>(null);
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <h1 className={styles.heading}>MAZE GENERATOR</h1>
+    <div className={globalStyles.page}>
+      <main className={globalStyles.main}>
+        <h1 className={globalStyles.heading}>MAZE GENERATOR</h1>
         <div className={styles.inputGroup}>
           <InputFields
             invalidElements={invalidElements}
