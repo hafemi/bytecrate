@@ -12,9 +12,9 @@ import styles from './page.module.css';
 import globalStyles from '@/app/page.module.css';
 
 export default function Home() {
-  const [width, setWidth] = useState('');
-  const [height, setHeight] = useState('');
-  const [animationSpeed, setAnimationSpeed] = useState('');
+  const [width, setWidth] = useState('15');
+  const [height, setHeight] = useState('15');
+  const [animationSpeed, setAnimationSpeed] = useState('0');
   const [startDirections, setStartDirections] = useState('1');
   const [startingPoint, setStartingPoint] = useState(StartingPoint.TopAndBottom);
   
