@@ -34,7 +34,7 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
         <h1 className={styles.heading}>MAZE GENERATOR</h1>
-        <div className={styles.controls}>
+        <div className={styles.inputGroup}>
           <InputFields
             invalidElements={invalidElements}
             width={width}
