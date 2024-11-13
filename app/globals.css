@@ -72,25 +72,9 @@ button:hover {
 }
 
 ul, ol {
-  padding-left: 20px; /* Add some padding to the left */
+  padding-left: 20px;
 }
 
 li {
-  margin-bottom: 5px; /* Add some space between list items */
-}
-
-.invalid {
-  color: red;
-}
-
-.emptyInput {
-  background-color: #ff0000;
-  font-size: 1em;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid rgb(0, 0, 0, 0.2);
-}
-
-.hidden {
-  display: none;
+  margin-bottom: 5px;
 }
