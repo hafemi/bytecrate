@@ -1,14 +1,23 @@
 'use client';
-import styles from './page.module.css';
 import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div>
       <title>ByteBay</title>
-      <main className={styles.main}>
-        <h1 className={styles.heading}>BYTE BAY</h1>
-
+      <main>
+        <h1 >BYTE BAY</h1>
+        <p>Collection of different Tools and Games</p>
+        <p>
+          View GitHub{' '}
+          <a
+            href="https://github.com/hafemi/byte-bay"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            repository
+          </a>
+        </p>
         <section>
           <h2>Tools</h2>
           <ul>
@@ -18,7 +27,6 @@ export default function Home() {
             <li>Random Number Generator (planned)</li>
           </ul>
         </section>
-
         <section>
           <h2>Games</h2>
           <ul>
@@ -29,7 +37,6 @@ export default function Home() {
             <li>Tic Tac Toe (planned)</li>
           </ul>
         </section>
-        
       </main>
     </div>
   );
