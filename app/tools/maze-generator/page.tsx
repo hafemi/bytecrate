@@ -1,15 +1,19 @@
 'use client';
+import globalStyles from '@/app/page.module.css';
 import {
   handleGenerationButtonClicked,
   MazeGenerator,
   StartingPoint,
 } from '@/components/tools/maze-generator/button-handler';
 import CanvaColors from '@/components/tools/maze-generator/canva-colors';
-import { InputFields, Checkboxes, getNumberFromString } from '@/components/tools/maze-generator/input';
+import {
+  Checkboxes,
+  getNumberFromString,
+  InputFields
+} from '@/components/tools/maze-generator/input';
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
-import globalStyles from '@/app/page.module.css';
 
 export default function Home() {
   const [width, setWidth] = useState('15');
