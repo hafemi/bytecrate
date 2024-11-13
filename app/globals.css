@@ -71,6 +71,14 @@ button:hover {
   background-color: #8f8f8f;
 }
 
+ul, ol {
+  padding-left: 20px; /* Add some padding to the left */
+}
+
+li {
+  margin-bottom: 5px; /* Add some space between list items */
+}
+
 .invalid {
   color: red;
 }
