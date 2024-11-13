@@ -7,7 +7,7 @@ enum MazeCellValue {
   Solution = 2,
 }
 
-export enum StartingPoint {
+export enum EntryAndExit {
   TopAndBottom = 'top_and_bottom',
   LeftAndRight = 'left_and_right',
   DiagonalTopLeft = 'diagonal_top_left',
@@ -21,7 +21,7 @@ interface MazeGenerationConfig {
   height: number;
   startDirections: number;
   invalidElements: string[];
-  startingPoint: StartingPoint;
+  entryAndExit: EntryAndExit;
   animationSpeed: number;
 
   animateCheckbox: boolean;
@@ -52,7 +52,7 @@ export function handleGenerationButtonClicked(values: MazeGenerationConfig): voi
     values.width,
     values.height,
     values.startDirections,
-    values.startingPoint,
+    values.entryAndExit,
     values.animateCheckbox,
     values.animationSpeed,
     values.showSolutionCheckbox,
@@ -78,7 +78,7 @@ export class MazeGenerator {
     public width: number,
     public height: number,
     public startDirections: number,
-    public startingPoint: StartingPoint,
+    public entryAndExit: EntryAndExit,
     public animate: boolean,
     public animationSpeed: number,
     public showSolution: boolean,
@@ -133,7 +133,7 @@ export class MazeGenerator {
   }
 
   async solveMaze(startRow: number, startCol: number): Promise<void> {
-    if (this.startingPoint !== StartingPoint.None && (await this.findSolutionPath(startRow, startCol))) {
+    if (this.entryAndExit !== EntryAndExit.None && (await this.findSolutionPath(startRow, startCol))) {
       this.maze[this.exitPoint.row][this.exitPoint.col] = MazeCellValue.Solution;
     }
   }
@@ -225,29 +225,29 @@ export class MazeGenerator {
       this.exitPoint = { row: exitRow, col: exitCol };
     };
 
-    let startingPoint = this.startingPoint;
-    if (startingPoint == StartingPoint.Random)
-      startingPoint = [
-        StartingPoint.TopAndBottom,
-        StartingPoint.LeftAndRight,
-        StartingPoint.DiagonalTopLeft,
-        StartingPoint.DiagonalLeftTop,
+    let entryAndExit = this.entryAndExit;
+    if (entryAndExit == EntryAndExit.Random)
+      entryAndExit = [
+        EntryAndExit.TopAndBottom,
+        EntryAndExit.LeftAndRight,
+        EntryAndExit.DiagonalTopLeft,
+        EntryAndExit.DiagonalLeftTop,
       ][Math.floor(Math.random() * 4)];
 
-    switch (startingPoint) {
-      case StartingPoint.TopAndBottom:
+    switch (entryAndExit) {
+      case EntryAndExit.TopAndBottom:
         setEntryAndExit(0, middlePointX, this.height - 1, middlePointX);
         break;
-      case StartingPoint.LeftAndRight:
+      case EntryAndExit.LeftAndRight:
         setEntryAndExit(middlePointY, 0, middlePointY, this.width - 1);
         break;
-      case StartingPoint.DiagonalTopLeft:
+      case EntryAndExit.DiagonalTopLeft:
         setEntryAndExit(0, OFFSET_ONE, this.height - 1, this.width - OFFSET_TWO);
         break;
-      case StartingPoint.DiagonalLeftTop:
+      case EntryAndExit.DiagonalLeftTop:
         setEntryAndExit(OFFSET_ONE, 0, this.height - OFFSET_TWO, this.width - 1);
         break;
-      case StartingPoint.DiagonalLeftTop:
+      case EntryAndExit.DiagonalLeftTop:
         setEntryAndExit(OFFSET_ONE, 0, this.height - OFFSET_TWO, this.width - 1);
         break;
       default:
@@ -278,11 +278,7 @@ export class MazeGenerator {
     showSolution: boolean;
     showEntryExit: boolean;
   }): void {
-    if (
-      options.showEntryExit &&
-      this.startingPoint !== StartingPoint.None &&
-      this.startingPoint !== StartingPoint.Random
-    ) {
+    if (options.showEntryExit && this.entryAndExit !== EntryAndExit.None && this.entryAndExit !== EntryAndExit.Random) {
       if (options.coordinate.row === this.entryPoint.row && options.coordinate.col === this.entryPoint.col) {
         options.ctx.fillStyle = this.entryColor;
         return;

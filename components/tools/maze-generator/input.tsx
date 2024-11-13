@@ -1,5 +1,5 @@
 import styles from '@/app/page.module.css';
-import { MazeGenerator, StartingPoint } from '@/components/tools/maze-generator/button-handler';
+import { MazeGenerator, EntryAndExit } from '@/components/tools/maze-generator/button-handler';
 import React from 'react';
 
 interface InputFieldsProps {
@@ -16,11 +16,11 @@ interface InputFieldsProps {
 }
 
 interface CheckboxesProps {
-  startingPoint: StartingPoint;
+  entryAndExit: EntryAndExit;
   showEntryExitCheckbox: boolean;
   showSolutionCheckbox: boolean;
   animateCheckbox: boolean;
-  setStartingPoint: React.Dispatch<React.SetStateAction<StartingPoint>>;
+  setEntryAndExit: React.Dispatch<React.SetStateAction<EntryAndExit>>;
   setShowSolutionCheckbox: React.Dispatch<React.SetStateAction<boolean>>;
   setShowEntryExitCheckbox: React.Dispatch<React.SetStateAction<boolean>>;
   setAnimateCheckbox: React.Dispatch<React.SetStateAction<boolean>>;
@@ -134,27 +134,23 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
   animateCheckbox,
   showEntryExitCheckbox,
   showSolutionCheckbox,
-  startingPoint,
+  entryAndExit,
   maze,
-  setStartingPoint,
+  setEntryAndExit,
   setAnimateCheckbox,
   setShowEntryExitCheckbox,
   setShowSolutionCheckbox,
 }) => {
   return (
     <div>
-      <label htmlFor="startingPoint">Starting Point</label>
-      <select
-        id="startingPoint"
-        value={startingPoint}
-        onChange={(e) => setStartingPoint(e.target.value as StartingPoint)}
-      >
-        <option value={StartingPoint.TopAndBottom}>Top and Bottom</option>
-        <option value={StartingPoint.LeftAndRight}>Left and Right</option>
-        <option value={StartingPoint.DiagonalTopLeft}>Diagonal | Top Left</option>
-        <option value={StartingPoint.DiagonalLeftTop}>Diagonal | Left Top</option>
-        <option value={StartingPoint.Random}>Random</option>
-        <option value={StartingPoint.None}>None</option>
+      <label htmlFor="entryAndExit">Starting Point</label>
+      <select id="entryAndExit" value={entryAndExit} onChange={(e) => setEntryAndExit(e.target.value as EntryAndExit)}>
+        <option value={EntryAndExit.TopAndBottom}>Top and Bottom</option>
+        <option value={EntryAndExit.LeftAndRight}>Left and Right</option>
+        <option value={EntryAndExit.DiagonalTopLeft}>Diagonal | Top Left</option>
+        <option value={EntryAndExit.DiagonalLeftTop}>Diagonal | Left Top</option>
+        <option value={EntryAndExit.Random}>Random</option>
+        <option value={EntryAndExit.None}>None</option>
       </select>
       <br />
       <label htmlFor="animationSpeedCheckbox">Animation Speed</label>

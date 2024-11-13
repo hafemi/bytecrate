@@ -2,14 +2,10 @@
 import {
   handleGenerationButtonClicked,
   MazeGenerator,
-  StartingPoint,
+  EntryAndExit,
 } from '@/components/tools/maze-generator/button-handler';
 import CanvaColors from '@/components/tools/maze-generator/canva-colors';
-import {
-  Checkboxes,
-  getNumberFromString,
-  InputFields
-} from '@/components/tools/maze-generator/input';
+import { Checkboxes, getNumberFromString, InputFields } from '@/components/tools/maze-generator/input';
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
@@ -19,18 +15,18 @@ export default function Home() {
   const [height, setHeight] = useState('15');
   const [animationSpeed, setAnimationSpeed] = useState('0');
   const [startDirections, setStartDirections] = useState('1');
-  const [startingPoint, setStartingPoint] = useState(StartingPoint.TopAndBottom);
-  
+  const [entryAndExit, setEntryAndExit] = useState(EntryAndExit.TopAndBottom);
+
   const [animateCheckbox, setAnimateCheckbox] = useState(false);
   const [showSolutionCheckbox, setShowSolutionCheckbox] = useState(false);
   const [showEntryExitCheckbox, setShowEntryExitCheckbox] = useState(false);
-  
+
   const [pathColor, setPathColor] = useState('#FFFFFF');
   const [wallColor, setWallColor] = useState('#000000');
   const [solutionColor, setSolutionColor] = useState('#FF0000');
   const [entryColor, setEntryColor] = useState('#00FF00');
   const [exitColor, setExitColor] = useState('#FF0000');
-  
+
   const [invalidElements, setInvalidElements] = useState<string[]>([]);
   const [maze, setMaze] = useState<MazeGenerator | null>(null);
 
@@ -53,11 +49,11 @@ export default function Home() {
             setStartDirections={setStartDirections}
           />
           <Checkboxes
-            startingPoint={startingPoint}
+            entryAndExit={entryAndExit}
             showEntryExitCheckbox={showEntryExitCheckbox}
             showSolutionCheckbox={showSolutionCheckbox}
             animateCheckbox={animateCheckbox}
-            setStartingPoint={setStartingPoint}
+            setEntryAndExit={setEntryAndExit}
             setShowSolutionCheckbox={setShowSolutionCheckbox}
             setShowEntryExitCheckbox={setShowEntryExitCheckbox}
             setAnimateCheckbox={setAnimateCheckbox}
@@ -84,7 +80,7 @@ export default function Home() {
                 startDirections: getNumberFromString(startDirections),
                 animationSpeed: getNumberFromString(animationSpeed),
                 invalidElements,
-                startingPoint,
+                entryAndExit,
                 animateCheckbox,
                 showSolutionCheckbox,
                 showEntryExitCheckbox,
