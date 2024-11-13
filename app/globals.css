@@ -70,3 +70,19 @@ button {
 button:hover {
   background-color: #8f8f8f;
 }
+
+.invalid {
+  color: red;
+}
+
+.emptyInput {
+  background-color: #ff0000;
+  font-size: 1em;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+.hidden {
+  display: none;
+}

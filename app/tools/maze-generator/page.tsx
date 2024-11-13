@@ -1,5 +1,4 @@
 'use client';
-import globalStyles from '@/app/page.module.css';
 import {
   handleGenerationButtonClicked,
   MazeGenerator,
@@ -36,10 +35,10 @@ export default function Home() {
   const [maze, setMaze] = useState<MazeGenerator | null>(null);
 
   return (
-    <div className={globalStyles.page}>
+    <div className={styles.page}>
       <title>ByteBay - Maze Generator</title>
-      <main className={globalStyles.main}>
-        <h1 className={globalStyles.heading}>MAZE GENERATOR</h1>
+      <main className={styles.main}>
+        <h1 className={styles.heading}>MAZE GENERATOR</h1>
         <div className={styles.inputGroup}>
           <InputFields
             invalidElements={invalidElements}
