@@ -152,7 +152,7 @@ export class MazeGenerator {
 
     this.maze[row][col] = MazeCellValue.Solution;
     if (this.showSolution && this.animate) {
-      this.updateMazeCanvas(this.showSolution, false);
+      this.updateMazeCanvas(this.showSolution, true);
       await sleep(this.animationSpeed);
     }
 
