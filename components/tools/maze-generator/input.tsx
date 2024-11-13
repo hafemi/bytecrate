@@ -178,7 +178,7 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
         }}
       />
       <br />
-      <label htmlFor="Show Entry/Exit">Show Entry/Exit</label>
+      <label htmlFor="showEntryExitCheckbox">Show Entry/Exit</label>
       <input
         id="showEntryExitCheckbox"
         type="checkbox"
