@@ -7,6 +7,7 @@ export default function Home() {
       <title>ByteBay</title>
       <main>
         <h1 >BYTE BAY</h1>
+      <title>ByteBay - Homepage</title>
         <p>Collection of different Tools and Games</p>
         <p>
           View GitHub{' '}
