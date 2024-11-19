@@ -10,12 +10,6 @@ export default function Home() {
       <main className={styles.main}>
         <h1>BYTE BAY</h1>
         <p>Collection of different Tools and Games</p>
-        <p>
-          View GitHub{' '}
-          <a href="https://github.com/hafemi/byte-bay" target="_blank" rel="noopener noreferrer">
-            repository
-          </a>
-        </p>
         <section>
           <h2>Tools</h2>
           <ul>
