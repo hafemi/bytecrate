@@ -9,6 +9,7 @@ import { Checkboxes, getNumberFromString, InputFields } from '@/components/tools
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
+import { Footer } from '@/app/layout';
 
 export default function Home() {
   const [width, setWidth] = useState('15');
@@ -112,6 +113,7 @@ export default function Home() {
         </div>
         <canvas id="mazeCanvas" width="0" height="0"></canvas>
       </main>
+      <Footer />
     </div>
   );
 }

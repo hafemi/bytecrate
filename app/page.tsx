@@ -1,21 +1,18 @@
 'use client';
 import Link from 'next/link';
+import { Footer } from '@/app/layout';
+import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <div>
-      <title>ByteBay</title>
-      <main>
-        <h1 >BYTE BAY</h1>
+    <div className={styles.page}>
       <title>ByteBay - Homepage</title>
+      <main className={styles.main}>
+        <h1>BYTE BAY</h1>
         <p>Collection of different Tools and Games</p>
         <p>
           View GitHub{' '}
-          <a
-            href="https://github.com/hafemi/byte-bay"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://github.com/hafemi/byte-bay" target="_blank" rel="noopener noreferrer">
             repository
           </a>
         </p>
@@ -39,6 +36,7 @@ export default function Home() {
           </ul>
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
