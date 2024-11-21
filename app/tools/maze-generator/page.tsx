@@ -9,7 +9,7 @@ import { Checkboxes, getNumberFromString, InputFields } from '@/components/tools
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
-import { Footer } from '@/app/layout';
+import { Footer, Header } from '@/app/layout';
 
 export default function Home() {
   const [width, setWidth] = useState('15');
@@ -34,6 +34,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <title>ByteBay - Maze Generator</title>
+      <Header />
       <main className={styles.main}>
         <h1 className={styles.heading}>MAZE GENERATOR</h1>
         <div className={styles.inputGroup}>
