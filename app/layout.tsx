@@ -36,11 +36,11 @@ export const Footer = () => {
         <p>ByteBay</p>
       </div>
       <nav className={styles.footerNavigation}>
-        <a href="">About us</a>
-        <a href="">Contact</a>
-        <a href="https://github.com/hafemi/byte-bay" target="_blank" rel="noopener noreferrer">
+        <Link href="">About us</Link>
+        <Link href="">Contact</Link>
+        <Link href="https://github.com/hafemi/byte-bay" target="_blank" rel="noopener noreferrer">
           Github Repository
-        </a>
+        </Link>
       </nav>
     </footer>
   );
@@ -60,15 +60,15 @@ export const Header = () => {
       <nav className={styles.headerNavigation}>
         <Link href="/">Home</Link>
         <div className={styles.dropdown}>
-          <a href="">Tools</a>
+          <Link href="">Tools</Link>
           <div className={styles.dropdownContent}>
-            <a href="/tools/maze-generator">Maze Generator</a>
+            <Link href="/tools/maze-generator">Maze Generator</Link>
           </div>
         </div>
         <div className={styles.dropdown}>
-          <a href="">Games</a>
+          <Link href="">Games</Link>
           <div className={styles.dropdownContent}>
-            <a href="/games/rock-paper-scissors">Rock Paper Scissors</a>
+            <Link href="/games/rock-paper-scissors">Rock Paper Scissors</Link>
           </div>
         </div>
       </nav>
