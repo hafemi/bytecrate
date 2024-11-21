@@ -60,13 +60,13 @@ export const Header = () => {
       <nav className={styles.headerNavigation}>
         <Link href="/">Home</Link>
         <div className={styles.dropdown}>
-          <Link href="">Tools</Link>
+          <p>Tools</p>
           <div className={styles.dropdownContent}>
             <Link href="/tools/maze-generator">Maze Generator</Link>
           </div>
         </div>
         <div className={styles.dropdown}>
-          <Link href="">Games</Link>
+          <p>Games</p>
           <div className={styles.dropdownContent}>
             <Link href="/games/rock-paper-scissors">Rock Paper Scissors</Link>
           </div>
