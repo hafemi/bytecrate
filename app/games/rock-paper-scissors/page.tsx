@@ -1,15 +1,25 @@
 'use client';
-import { Footer } from '@/app/layout';
 import styles from './page.module.css';
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <title>ByteBay - Rock Paper Scissors</title>
-      <main className={styles.main}>
-        <h1>ROCK PAPER SCISSORS</h1>
-      </main>
-      <Footer />
-    </div>
-  );
+    return(
+        <div className={styles.page}>
+            <head>
+                <title>Rock Paper Scissors</title>
+                <link href="page.module.css" rel="stylesheet" />
+            </head>
+            <body>
+                <main className={styles.main}>
+                    <h1>Rock Paper Scissors</h1>
+                    <h2>Game by MemmeMann</h2>
+                    <section>
+                        <p>Choose a thing</p>
+                    </section>
+                    <button>Rock</button>
+                    <button>Paper</button>
+                    <button>Scissors</button>
+                </main>
+            </body>
+        </div>
+    );
 }
