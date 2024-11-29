@@ -6,13 +6,42 @@
 
 .main {
   flex: 1;
+}
+
+.userInputContainer {
+  display: flex;
+  flex-direction: column; /* Stack inputs vertically */
+  align-items: top;
   padding: 20px;
 }
 
-.inputGroup {
+.userInputGroup {
   display: flex;
-  flex-direction: row;
+  align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 20px;
-  gap: 100px;
+  padding: 0 50px;
+  max-width: 70em;
+  margin: 0 auto;
+}
+
+.userInput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userInput label {
+  margin-right: 20px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+}
+
+.mazeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }

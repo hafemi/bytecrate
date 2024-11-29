@@ -37,7 +37,7 @@ export default function Home() {
       <Header />
       <main className={styles.main}>
         <h1 className={styles.heading}>MAZE GENERATOR</h1>
-        <div className={styles.inputGroup}>
+        <div className={styles.userInputGroup}>
           <InputFields
             invalidElements={invalidElements}
             width={width}
@@ -73,7 +73,7 @@ export default function Home() {
         </div>
         {/* buttons do not have their own component since that would
         lead to a lot of argument passing */}
-        <div>
+        <div className={styles.buttonGroup}>
           <button
             onClick={() =>
               handleGenerationButtonClicked({
@@ -112,7 +112,9 @@ export default function Home() {
             <FaArrowDown /> Download
           </button>
         </div>
-        <canvas id="mazeCanvas" width="0" height="0"></canvas>
+        <div className={styles.mazeContainer}>
+          <canvas id="mazeCanvas" width={500} height={500}></canvas>
+        </div>
       </main>
       <Footer />
     </div>
