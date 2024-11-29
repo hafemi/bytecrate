@@ -30,7 +30,7 @@ const CanvaColors: React.FC<CanvaColorsProps> = ({
           id="wallColor"
           name="wallColor"
           defaultValue="#000000"
-          onChange={(e) => {
+          onBlur={(e) => {
             setWallColor(e.target.value);
           }}
         />
@@ -42,7 +42,7 @@ const CanvaColors: React.FC<CanvaColorsProps> = ({
           id="pathColor"
           name="pathColor"
           defaultValue="#FFFFFF"
-          onChange={(e) => {
+          onBlur={(e) => {
             setPathColor(e.target.value);
           }}
         />
@@ -55,7 +55,7 @@ const CanvaColors: React.FC<CanvaColorsProps> = ({
             id="solutionColor"
             name="solutionColor"
             defaultValue="#FF0000"
-            onChange={(e) => {
+            onBlur={(e) => {
               setSolutionColor(e.target.value);
             }}
           />
@@ -69,7 +69,7 @@ const CanvaColors: React.FC<CanvaColorsProps> = ({
             id="entryColor"
             name="entryColor"
             defaultValue="#00FF00"
-            onChange={(e) => {
+            onBlur={(e) => {
               setEntryColor(e.target.value);
             }}
           />
@@ -81,7 +81,7 @@ const CanvaColors: React.FC<CanvaColorsProps> = ({
             id="exitColor"
             name="exitColor"
             defaultValue="#FF0000"
-            onChange={(e) => {
+            onBlur={(e) => {
               setExitColor(e.target.value);
             }}
           />
