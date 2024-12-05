@@ -115,7 +115,7 @@ export const InputFields: React.FC<InputFieldsProps> = ({
           ${startDirections == '' ? mainStyles.emptyInput : mainStyles.input}
           `}
             id="startDirections"
-            type="string"
+            type="number"
             placeholder={`${minValues.startDirections}-${maxValues.startDirections}`}
             value={startDirections}
             onChange={(e) => {
