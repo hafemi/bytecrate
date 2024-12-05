@@ -61,6 +61,11 @@ input[type="number"] {
   width: 6em;
 }
 
+input[type="color"] {
+  border-radius: 7px;
+  border: 1px solid #ccc;
+}
+
 button {
   background-color: #ffffff;
   color: rgb(0, 0, 0);
