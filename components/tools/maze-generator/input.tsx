@@ -1,6 +1,6 @@
 import mainStyles from '@/app/page.module.css';
 import pageStyles from '@/app/tools/maze-generator/page.module.css';
-import { MazeGenerator, EntryAndExit } from '@/components/tools/maze-generator/button-handler';
+import { EntryAndExit, MazeGenerator } from '@/components/tools/maze-generator/button-handler';
 import React from 'react';
 
 interface InputFieldsProps {

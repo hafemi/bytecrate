@@ -1,9 +1,9 @@
 'use client';
 import localFont from 'next/font/local';
-import './globals.css';
 import Image from 'next/image';
-import styles from './layout.module.css';
 import Link from 'next/link';
+import './globals.css';
+import styles from './layout.module.css';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
