@@ -53,11 +53,12 @@ input::placeholder {
   opacity: 0.7;
 }
 
-input {
+input[type="number"] {
   font-size: 1em;
   padding: 10px;
   border-radius: 7px;
   border: 1px solid #ccc;
+  width: 6em;
 }
 
 button {
