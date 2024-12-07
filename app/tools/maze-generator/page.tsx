@@ -1,15 +1,15 @@
 'use client';
+import { Footer, Header } from '@/app/layout';
 import {
+  EntryAndExit,
   handleGenerationButtonClicked,
   MazeGenerator,
-  EntryAndExit,
 } from '@/components/tools/maze-generator/button-handler';
 import CanvaColors from '@/components/tools/maze-generator/canva-colors';
 import { Checkboxes, getNumberFromString, InputFields } from '@/components/tools/maze-generator/input';
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
-import { Footer } from '@/app/layout';
 
 export default function Home() {
   const [width, setWidth] = useState('15');
@@ -34,9 +34,10 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <title>ByteBay - Maze Generator</title>
+      <Header />
       <main className={styles.main}>
         <h1 className={styles.heading}>MAZE GENERATOR</h1>
-        <div className={styles.inputGroup}>
+        <div className={styles.userInputGroup}>
           <InputFields
             invalidElements={invalidElements}
             width={width}
@@ -72,7 +73,7 @@ export default function Home() {
         </div>
         {/* buttons do not have their own component since that would
         lead to a lot of argument passing */}
-        <div>
+        <div className={styles.buttonGroup}>
           <button
             onClick={() =>
               handleGenerationButtonClicked({
@@ -111,7 +112,9 @@ export default function Home() {
             <FaArrowDown /> Download
           </button>
         </div>
-        <canvas id="mazeCanvas" width="0" height="0"></canvas>
+        <div className={styles.mazeContainer}>
+          <canvas id="mazeCanvas" width={500} height={500}></canvas>
+        </div>
       </main>
       <Footer />
     </div>

@@ -1,14 +1,14 @@
 'use client';
+import { Footer, Header } from '@/app/layout';
 import Link from 'next/link';
-import { Footer } from '@/app/layout';
 import styles from './page.module.css';
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <title>ByteBay - Homepage</title>
+      <Header />
       <main className={styles.main}>
-        <h1>BYTE BAY</h1>
         <p>Collection of different Tools and Games</p>
         <section>
           <h2>Tools</h2>
