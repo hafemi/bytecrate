@@ -289,7 +289,7 @@ export class MazeGenerator {
     }
 
     switch (this.maze[options.coordinate.row][options.coordinate.col]) {
-      case MazeCellValue.Wall:
+      case MazeCellValue.Wall:  
         options.ctx.fillStyle = this.wallColor;
         break;
       case MazeCellValue.Solution:
