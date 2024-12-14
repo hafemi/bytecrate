@@ -63,6 +63,7 @@ export const Header = () => {
           <p>Tools</p>
           <div className={styles.dropdownContent}>
             <Link href="/tools/maze-generator">Maze Generator</Link>
+            <Link href="/tools/password-generator">Password Generator</Link>
           </div>
         </div>
         <div className={styles.dropdown}>
