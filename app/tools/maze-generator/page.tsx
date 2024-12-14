@@ -5,8 +5,12 @@ import {
   handleGenerationButtonClicked,
   MazeGenerator,
 } from '@/components/tools/maze-generator/button-handler';
-import CanvaColors from '@/components/tools/maze-generator/canva-colors';
-import { Checkboxes, getNumberFromString, InputFields } from '@/components/tools/maze-generator/input';
+import {
+  Checkboxes,
+  getNumberFromString,
+  InputFields,
+  CanvaColors
+} from '@/components/tools/maze-generator/input';
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
