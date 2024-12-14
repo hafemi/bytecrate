@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      <title>ByteBay - Maze Generator</title>
+      <title>ByteCraft - Maze Generator</title>
       <Header />
       <main className={styles.main}>
         <h1 className={styles.heading}>MAZE GENERATOR</h1>

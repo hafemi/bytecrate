@@ -32,8 +32,8 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.logoContainer}>
-        <Image src="/images/temporary_logo.png" alt="ByteBay logo" width={50} height={50} />
-        <p>ByteBay</p>
+        <Image src="/images/temporary_logo.png" alt="ByteCraft logo" width={50} height={50} />
+        <p>ByteCraft</p>
       </div>
       <nav className={styles.footerNavigation}>
         <Link href="">About us</Link>
@@ -54,8 +54,8 @@ export const Header = () => {
         ${styles.logoContainer}
         ${styles.headerLogoPadding}`}
       >
-        <Image src="/images/temporary_logo.png" alt="ByteBay logo" width={70} height={70} />
-        <p>ByteBay</p>
+        <Image src="/images/temporary_logo.png" alt="ByteCraft logo" width={70} height={70} />
+        <p>ByteCraft</p>
       </div>
       <nav className={styles.headerNavigation}>
         <Link href="/">Home</Link>

@@ -13,7 +13,7 @@ export default function Home() {
   
   return (
     <div className={styles.page}>
-      <title>ByteBay - Password Generator</title>
+      <title>ByteCraft - Password Generator</title>
       <Header />
       <main className={styles.main}>
         <h1>PASSWORD GENERATOR</h1>
