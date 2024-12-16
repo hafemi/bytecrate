@@ -301,7 +301,14 @@ export const CanvaColors: React.FC<CanvaColorsProps> = ({
   );
 };
 
-function validateElement(options: {
+function validateElement({
+  value,
+  min,
+  max,
+  elementId,
+  setInvalidElements,
+  invalidElements,
+}: {
   value: number;
   min: number;
   max: number;
@@ -309,12 +316,14 @@ function validateElement(options: {
   setInvalidElements: React.Dispatch<React.SetStateAction<string[]>>;
   invalidElements: string[];
 }): void {
-  if (options.value < options.min || options.value > options.max) {
-    options.setInvalidElements([...options.invalidElements, options.elementId]);
-    return;
+  console.log(value)
+  if (value < min || value > max) {
+    if (!invalidElements.includes(elementId)) {
+      setInvalidElements([...invalidElements, elementId]);
+    }
+  } else {
+    setInvalidElements(invalidElements.filter((id) => id !== elementId));
   }
-
-  options.setInvalidElements(options.invalidElements.filter((id) => id !== options.elementId));
 }
 
 export function getNumberFromString(value: string): number {
