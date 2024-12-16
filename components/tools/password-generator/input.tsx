@@ -38,14 +38,12 @@ export const InputFields: React.FC<InputFieldsProps> = ({
           type="number"
           id="passwordLength"
           placeholder={`${passwordLengthRange.min}-${passwordLengthRange.max}`}
-          name="passwordLength"
           value={passwordLength}
           onChange={(e) => setPasswordLength(getValidValue(e.target.value))}
         />
         <input
           type="range"
           id="passwordLength"
-          name="passwordLength"
           min={passwordLengthRange.min}
           max={passwordLengthRange.max}
           value={passwordLength === '' ? passwordLengthRange.min : parseInt(passwordLength)}
@@ -57,7 +55,6 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         <input
           type="checkbox"
           id="useUppercase"
-          name="useUppercase"
           checked={useUppercase}
           onChange={() => setUseUppercase(!useUppercase)}
         />
@@ -67,7 +64,6 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         <input
           type="checkbox"
           id="useLowercase"
-          name="useLowercase"
           checked={useLowercase}
           onChange={() => setUseLowercase(!useLowercase)}
         />
@@ -77,7 +73,6 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         <input
           type="checkbox"
           id="useNumbers"
-          name="useNumbers"
           checked={useNumbers}
           onChange={() => setUseNumbers(!useNumbers)}
         />
@@ -87,7 +82,6 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         <input
           type="checkbox"
           id="useSpecialCharacters"
-          name="useSpecialCharacters"
           checked={useSpecialCharacters}
           onChange={() => setUseSpecialCharacters(!useSpecialCharacters)}
         />

@@ -5,11 +5,11 @@ import styles from './page.module.css';
 import { InputFields } from '@/components/tools/password-generator/input';
 
 export default function Home() {
+  const [passwordLength, setPasswordLength] = useState('20');
   const [useUppercase, setUseUppercase] = useState(true);
   const [useLowercase, setUseLowercase] = useState(true);
   const [useNumbers, setUseNumbers] = useState(true);
   const [useSpecialCharacters, setUseSpecialCharacters] = useState(true);
-  const [passwordLength, setPasswordLength] = useState(20);
   
   return (
     <div className={styles.page}>
