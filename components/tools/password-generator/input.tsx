@@ -1,16 +1,16 @@
 import React from 'react';
 
 interface InputFieldsProps {
+  passwordLength: string;
   useUppercase: boolean;
   useLowercase: boolean;
   useNumbers: boolean;
   useSpecialCharacters: boolean;
-  passwordLength: number;
+  setPasswordLength: React.Dispatch<React.SetStateAction<string>>;
   setUseUppercase: React.Dispatch<React.SetStateAction<boolean>>;
   setUseLowercase: React.Dispatch<React.SetStateAction<boolean>>;
   setUseNumbers: React.Dispatch<React.SetStateAction<boolean>>;
   setUseSpecialCharacters: React.Dispatch<React.SetStateAction<boolean>>;
-  setPasswordLength: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const passwordLengthRange: Record<string, number> = {
@@ -37,6 +37,7 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         <input
           type="number"
           id="passwordLength"
+          placeholder={`${passwordLengthRange.min}-${passwordLengthRange.max}`}
           name="passwordLength"
           value={passwordLength}
           onChange={(e) => setPasswordLength(getValidValue(e.target.value))}
@@ -95,13 +96,20 @@ export const InputFields: React.FC<InputFieldsProps> = ({
   );
 };
 
-function getValidValue(value: string): number {
-  const number = isNaN(parseInt(value)) ? 0 : parseInt(value);
+function getValidValue(value: string): string {
+  const parsedNumber = parseInt(value);
+  if (isNaN(parsedNumber)) return '';
   
-  if (number > passwordLengthRange.max)
-    return passwordLengthRange.max;
-  if (number < passwordLengthRange.min)
-    return passwordLengthRange.min;
-  
-  return number;
+  const truncatedNumber = Math.trunc(parseInt(value));
+
+  switch (true) {
+    case isNaN(truncatedNumber):
+      return '';
+    case truncatedNumber > passwordLengthRange.max:
+      return passwordLengthRange.max.toString();
+    case truncatedNumber < passwordLengthRange.min:
+      return '';
+    default:
+      return truncatedNumber.toString();
+  }
 }
