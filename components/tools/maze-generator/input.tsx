@@ -10,6 +10,7 @@ interface InputFieldsProps {
   height: string;
   startDirections: string;
   animateCheckbox: boolean;
+  animationSpeed: string;
   setWidth: React.Dispatch<React.SetStateAction<string>>;
   setHeight: React.Dispatch<React.SetStateAction<string>>;
   setAnimationSpeed: React.Dispatch<React.SetStateAction<string>>;
@@ -42,12 +43,14 @@ export const minValues: Record<string, number> = {
   width: 5,
   height: 5,
   startDirections: 1,
+  speed: 0,
 };
 
 export const maxValues: Record<string, number> = {
   width: 150,
   height: 150,
   startDirections: 4,
+  speed: 1000,
 };
 
 export const InputFields: React.FC<InputFieldsProps> = ({
@@ -55,6 +58,7 @@ export const InputFields: React.FC<InputFieldsProps> = ({
   height,
   startDirections,
   animateCheckbox,
+  animationSpeed,
   setWidth,
   setHeight,
   setAnimationSpeed,
@@ -81,10 +85,15 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         divData={pageStyles.userInput}
       />
       <div className={!animateCheckbox ? mainStyles.hidden : ''}>
-        <div className={pageStyles.userInput}>
-          <label htmlFor="speedInMS">Speed (ms)</label>
-          <input id="speedInMS" type="number" placeholder="100" onChange={(e) => setAnimationSpeed(e.target.value)} />
-        </div>
+        <NumberInput
+          label="Speed (ms)"
+          id="speedInMS"
+          min={minValues.speed}
+          max={maxValues.speed}
+          value={animationSpeed}
+          setValue={setAnimationSpeed}
+          divData={pageStyles.userInput}
+        />
         <NumberInput
           label="Start Directions"
           id="startDirections"

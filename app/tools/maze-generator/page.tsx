@@ -46,6 +46,7 @@ export default function Home() {
             height={height}
             startDirections={startDirections}
             animateCheckbox={animateCheckbox}
+            animationSpeed={animationSpeed}
             setWidth={setWidth}
             setHeight={setHeight}
             setAnimationSpeed={setAnimationSpeed}

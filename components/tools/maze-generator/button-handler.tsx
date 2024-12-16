@@ -310,12 +310,18 @@ export class MazeGenerator {
   }
 }
 
-function validateElementsDimensions(options: { width: number; height: number; startDirections: number }): boolean {
+function validateElementsDimensions(options: {
+  width: number;
+  height: number;
+  startDirections: number;
+  animationSpeed: number;
+}): boolean {
   // prettier-ignore
   const dimensions = [
     { value: options.width, min: minValues.width, max: maxValues.width },
     { value: options.height, min: minValues.height, max: maxValues.height },
     { value: options.startDirections, min: minValues.startDirections, max: maxValues.startDirections },
+    { value: options.animationSpeed, min: minValues.speed, max: maxValues.speed },
   ];
 
   for (const { value, min, max } of dimensions) {
