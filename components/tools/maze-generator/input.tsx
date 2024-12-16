@@ -1,7 +1,9 @@
-import mainStyles from '@/app/page.module.css';
+
 import pageStyles from '@/app/tools/maze-generator/page.module.css';
+import mainStyles from '@/app/page.module.css';
 import { EntryAndExit, MazeGenerator } from '@/components/tools/maze-generator/button-handler';
 import React from 'react';
+import { MemoizedNumberInput } from '@/components/utils/input-creators';
 
 interface InputFieldsProps {
   invalidElements: string[];
@@ -64,83 +66,44 @@ export const InputFields: React.FC<InputFieldsProps> = ({
 }) => {
   return (
     <div className={pageStyles.userInputContainer}>
-      <div className={pageStyles.userInput}>
-        <label htmlFor="width">Width</label>
-        <input
-          className={`
-          ${invalidElements.includes('width') ? mainStyles.invalid : ''}
-          ${width == '' ? mainStyles.emptyInput : mainStyles.input}
-        `}
-          id="width"
-          type="number"
-          placeholder={`${minValues.width}-${maxValues.width}`}
-          value={width}
-          onChange={(e) => {
-            setWidth(e.target.value);
-            validateElement({
-              value: getNumberFromString(e.target.value),
-              min: minValues.width,
-              max: maxValues.width,
-              elementId: 'width',
-              setInvalidElements,
-              invalidElements,
-            });
-          }}
-        />
-      </div>
-      <div className={pageStyles.userInput}>
-        <label htmlFor="height">Height</label>
-        <input
-          className={`
-          ${invalidElements.includes('height') ? mainStyles.invalid : ''}
-          ${height == '' ? mainStyles.emptyInput : mainStyles.input}
-        `}
-          id="height"
-          type="number"
-          placeholder={`${minValues.height}-${maxValues.height}`}
-          value={height}
-          onChange={(e) => {
-            setHeight(e.target.value);
-            validateElement({
-              value: getNumberFromString(e.target.value),
-              min: minValues.height,
-              max: maxValues.height,
-              elementId: 'height',
-              setInvalidElements,
-              invalidElements,
-            });
-          }}
-        />
-      </div>
+      <MemoizedNumberInput
+        label="Width"
+        id="width"
+        min={minValues.width}
+        max={maxValues.width}
+        value={width}
+        setValue={setWidth}
+        invalidElements={invalidElements}
+        setInvalidElements={setInvalidElements}
+        divData={pageStyles.userInput}
+      />
+      <MemoizedNumberInput
+        label="Height"
+        id="height"
+        min={minValues.height}
+        max={maxValues.height}
+        value={height}
+        setValue={setHeight}
+        invalidElements={invalidElements}
+        setInvalidElements={setInvalidElements}
+        divData={pageStyles.userInput}
+      />
       <div className={!animateCheckbox ? mainStyles.hidden : ''}>
         <div className={pageStyles.userInput}>
           <label htmlFor="speedInMS">Speed (ms)</label>
           <input id="speedInMS" type="number" placeholder="100" onChange={(e) => setAnimationSpeed(e.target.value)} />
         </div>
-        <div className={pageStyles.inputGroup}>
-          <label htmlFor="startDirections">Start Directions</label>
-          <input
-            className={`
-          ${invalidElements.includes('startDirections') ? mainStyles.invalid : ''}
-          ${startDirections == '' ? mainStyles.emptyInput : mainStyles.input}
-          `}
-            id="startDirections"
-            type="number"
-            placeholder={`${minValues.startDirections}-${maxValues.startDirections}`}
-            value={startDirections}
-            onChange={(e) => {
-              setStartDirections(e.target.value);
-              validateElement({
-                value: getNumberFromString(e.target.value),
-                min: minValues.startDirections,
-                max: maxValues.startDirections,
-                elementId: 'startDirections',
-                setInvalidElements,
-                invalidElements,
-              });
-            }}
-          />
-        </div>
+        <MemoizedNumberInput
+          label="Start Directions"
+          id="startDirections"
+          min={minValues.startDirections}
+          max={maxValues.startDirections}
+          value={startDirections}
+          setValue={setStartDirections}
+          invalidElements={invalidElements}
+          setInvalidElements={setInvalidElements}
+          divData={pageStyles.userInput}
+        />
       </div>
     </div>
   );
@@ -300,31 +263,6 @@ export const CanvaColors: React.FC<CanvaColorsProps> = ({
     </div>
   );
 };
-
-function validateElement({
-  value,
-  min,
-  max,
-  elementId,
-  setInvalidElements,
-  invalidElements,
-}: {
-  value: number;
-  min: number;
-  max: number;
-  elementId: string;
-  setInvalidElements: React.Dispatch<React.SetStateAction<string[]>>;
-  invalidElements: string[];
-}): void {
-  console.log(value)
-  if (value < min || value > max) {
-    if (!invalidElements.includes(elementId)) {
-      setInvalidElements([...invalidElements, elementId]);
-    }
-  } else {
-    setInvalidElements(invalidElements.filter((id) => id !== elementId));
-  }
-}
 
 export function getNumberFromString(value: string): number {
   return isNaN(parseInt(value)) ? 0 : parseInt(value);
