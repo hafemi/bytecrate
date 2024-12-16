@@ -3,15 +3,13 @@ import pageStyles from '@/app/tools/maze-generator/page.module.css';
 import mainStyles from '@/app/page.module.css';
 import { EntryAndExit, MazeGenerator } from '@/components/tools/maze-generator/button-handler';
 import React from 'react';
-import { MemoizedNumberInput } from '@/components/utils/input-creators';
+import { NumberInput } from '@/components/utils/input-creators';
 
 interface InputFieldsProps {
-  invalidElements: string[];
   width: string;
   height: string;
   startDirections: string;
   animateCheckbox: boolean;
-  setInvalidElements: React.Dispatch<React.SetStateAction<string[]>>;
   setWidth: React.Dispatch<React.SetStateAction<string>>;
   setHeight: React.Dispatch<React.SetStateAction<string>>;
   setAnimationSpeed: React.Dispatch<React.SetStateAction<string>>;
@@ -57,35 +55,29 @@ export const InputFields: React.FC<InputFieldsProps> = ({
   height,
   startDirections,
   animateCheckbox,
-  invalidElements,
   setWidth,
   setHeight,
   setAnimationSpeed,
-  setInvalidElements,
   setStartDirections,
 }) => {
   return (
     <div className={pageStyles.userInputContainer}>
-      <MemoizedNumberInput
+      <NumberInput
         label="Width"
         id="width"
         min={minValues.width}
         max={maxValues.width}
         value={width}
         setValue={setWidth}
-        invalidElements={invalidElements}
-        setInvalidElements={setInvalidElements}
         divData={pageStyles.userInput}
       />
-      <MemoizedNumberInput
+      <NumberInput
         label="Height"
         id="height"
         min={minValues.height}
         max={maxValues.height}
         value={height}
         setValue={setHeight}
-        invalidElements={invalidElements}
-        setInvalidElements={setInvalidElements}
         divData={pageStyles.userInput}
       />
       <div className={!animateCheckbox ? mainStyles.hidden : ''}>
@@ -93,15 +85,13 @@ export const InputFields: React.FC<InputFieldsProps> = ({
           <label htmlFor="speedInMS">Speed (ms)</label>
           <input id="speedInMS" type="number" placeholder="100" onChange={(e) => setAnimationSpeed(e.target.value)} />
         </div>
-        <MemoizedNumberInput
+        <NumberInput
           label="Start Directions"
           id="startDirections"
           min={minValues.startDirections}
           max={maxValues.startDirections}
           value={startDirections}
           setValue={setStartDirections}
-          invalidElements={invalidElements}
-          setInvalidElements={setInvalidElements}
           divData={pageStyles.userInput}
         />
       </div>

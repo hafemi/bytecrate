@@ -20,7 +20,6 @@ interface MazeGenerationConfig {
   width: number;
   height: number;
   startDirections: number;
-  invalidElements: string[];
   entryAndExit: EntryAndExit;
   animationSpeed: number;
 
@@ -289,7 +288,7 @@ export class MazeGenerator {
     }
 
     switch (this.maze[options.coordinate.row][options.coordinate.col]) {
-      case MazeCellValue.Wall:  
+      case MazeCellValue.Wall:
         options.ctx.fillStyle = this.wallColor;
         break;
       case MazeCellValue.Solution:
@@ -311,14 +310,7 @@ export class MazeGenerator {
   }
 }
 
-function validateElementsDimensions(options: {
-  width: number;
-  height: number;
-  startDirections: number;
-  invalidElements: string[];
-}): boolean {
-  if (options.invalidElements.length > 0) return false;
-
+function validateElementsDimensions(options: { width: number; height: number; startDirections: number }): boolean {
   // prettier-ignore
   const dimensions = [
     { value: options.width, min: minValues.width, max: maxValues.width },
@@ -327,7 +319,9 @@ function validateElementsDimensions(options: {
   ];
 
   for (const { value, min, max } of dimensions) {
-    if (value < min || value > max) return false;
+    if (value < min || value > max || isNaN(value)) {
+      return false;
+    }
   }
 
   return true;

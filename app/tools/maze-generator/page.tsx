@@ -32,7 +32,6 @@ export default function Home() {
   const [entryColor, setEntryColor] = useState('#00FF00');
   const [exitColor, setExitColor] = useState('#FF0000');
 
-  const [invalidElements, setInvalidElements] = useState<string[]>([]);
   const [maze, setMaze] = useState<MazeGenerator | null>(null);
 
   return (
@@ -43,12 +42,10 @@ export default function Home() {
         <h1 className={styles.heading}>MAZE GENERATOR</h1>
         <div className={styles.userInputGroup}>
           <InputFields
-            invalidElements={invalidElements}
             width={width}
             height={height}
             startDirections={startDirections}
             animateCheckbox={animateCheckbox}
-            setInvalidElements={setInvalidElements}
             setWidth={setWidth}
             setHeight={setHeight}
             setAnimationSpeed={setAnimationSpeed}
@@ -85,7 +82,6 @@ export default function Home() {
                 height: getNumberFromString(height),
                 startDirections: getNumberFromString(startDirections),
                 animationSpeed: getNumberFromString(animationSpeed),
-                invalidElements,
                 entryAndExit,
                 animateCheckbox,
                 showSolutionCheckbox,
