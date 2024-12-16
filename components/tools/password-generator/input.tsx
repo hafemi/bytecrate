@@ -47,7 +47,7 @@ export const InputFields: React.FC<InputFieldsProps> = ({
           name="passwordLength"
           min={passwordLengthRange.min}
           max={passwordLengthRange.max}
-          value={passwordLength}
+          value={passwordLength === '' ? passwordLengthRange.min : parseInt(passwordLength)}
           onChange={(e) => setPasswordLength(getValidValue(e.target.value))}
         />
       </div>
