@@ -6,7 +6,7 @@ import styles from './page.module.css';
 export default function Home() {
   return (
     <div className={styles.page}>
-      <title>ByteCraft - Homepage</title>
+      <title>ByteCrate - Homepage</title>
       <Header />
       <main className={styles.main}>
         <p>Collection of different Tools and Games</p>

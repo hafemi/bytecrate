@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Byte Craft",
+  title: "ByteCrate",
   description: "Collection of Games and Tools",
 };
