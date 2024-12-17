@@ -1,5 +1,4 @@
 'use client';
-import { Footer, Header } from '@/app/layout';
 import Link from 'next/link';
 import styles from './page.module.css';
 
@@ -7,7 +6,6 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <title>ByteCrate - Homepage</title>
-      <Header />
       <main className={styles.main}>
         <p>Collection of different Tools and Games</p>
         <section>
@@ -30,7 +28,6 @@ export default function Home() {
           </ul>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

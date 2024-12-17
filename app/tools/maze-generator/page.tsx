@@ -1,5 +1,4 @@
 'use client';
-import { Footer, Header } from '@/app/layout';
 import {
   EntryAndExit,
   handleGenerationButtonClicked,
@@ -37,7 +36,6 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <title>ByteCrate - Maze Generator</title>
-      <Header />
       <main className={styles.main}>
         <h1 className={styles.heading}>MAZE GENERATOR</h1>
         <div className={styles.userInputGroup}>
@@ -117,7 +115,6 @@ export default function Home() {
           <canvas id="mazeCanvas" width={500} height={500}></canvas>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

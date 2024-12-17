@@ -18,6 +18,7 @@ export const passwordLengthRange: Record<string, number> = {
   max: 512,
 };
 
+
 export const InputFields: React.FC<InputFieldsProps> = ({
   useUppercase,
   useLowercase,

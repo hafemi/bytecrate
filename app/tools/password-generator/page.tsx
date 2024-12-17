@@ -1,5 +1,4 @@
 'use client';
-import { Footer, Header } from '@/app/layout';
 import { useState } from 'react';
 import styles from './page.module.css';
 import { InputFields } from '@/components/tools/password-generator/input';
@@ -14,7 +13,6 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <title>ByteCrate - Password Generator</title>
-      <Header />
       <main className={styles.main}>
         <h1>PASSWORD GENERATOR</h1>
         <div>
@@ -32,7 +30,6 @@ export default function Home() {
           />
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

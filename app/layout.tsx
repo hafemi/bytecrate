@@ -23,30 +23,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
 
-export const Footer = () => {
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.logoContainer}>
-        <Image src="/images/temporary_logo.png" alt="ByteCrate logo" width={50} height={50} />
-        <p>ByteCrate</p>
-      </div>
-      <nav className={styles.footerNavigation}>
-        <Link href="">About us</Link>
-        <Link href="">Contact</Link>
-        <Link href="https://github.com/hafemi/byte-bay" target="_blank" rel="noopener noreferrer">
-          Github Repository
-        </Link>
-      </nav>
-    </footer>
-  );
-};
-
-export const Header = () => {
+const Header = () => {
   return (
     <header className={styles.header}>
       <div
@@ -74,5 +60,23 @@ export const Header = () => {
         </div>
       </nav>
     </header>
+  );
+};
+
+const Footer = () => {
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.logoContainer}>
+        <Image src="/images/temporary_logo.png" alt="ByteCrate logo" width={50} height={50} />
+        <p>ByteCrate</p>
+      </div>
+      <nav className={styles.footerNavigation}>
+        <Link href="">About us</Link>
+        <Link href="">Contact</Link>
+        <Link href="https://github.com/hafemi/byte-bay" target="_blank" rel="noopener noreferrer">
+          Github Repository
+        </Link>
+      </nav>
+    </footer>
   );
 };
