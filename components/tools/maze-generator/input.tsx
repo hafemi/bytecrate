@@ -3,7 +3,10 @@ import pageStyles from '@/app/tools/maze-generator/page.module.css';
 import mainStyles from '@/app/page.module.css';
 import { EntryAndExit, MazeGenerator } from '@/components/tools/maze-generator/button-handler';
 import React from 'react';
-import { NumberInput } from '@/components/utils/input-creators';
+import {
+  NumberInput,
+  ColorInput
+ } from '@/components/utils/input-creators';
 
 interface InputFieldsProps {
   width: string;
@@ -195,69 +198,44 @@ export const CanvaColors: React.FC<CanvaColorsProps> = ({
 }) => {
   return (
     <div className={pageStyles.userInputContainer}>
-      <div className={pageStyles.userInput}>
-        <label htmlFor="wallColor">Wall Color</label>
-        <input
-          type="color"
-          id="wallColor"
-          name="wallColor"
-          defaultValue="#000000"
-          onBlur={(e) => {
-            setWallColor(e.target.value);
-          }}
-        />
-      </div>
-      <div className={pageStyles.userInput}>
-        <label htmlFor="pathColor">Path Color</label>
-        <input
-          type="color"
-          id="pathColor"
-          name="pathColor"
-          defaultValue="#FFFFFF"
-          onBlur={(e) => {
-            setPathColor(e.target.value);
-          }}
-        />
-      </div>
+      <ColorInput
+        label="Wall Color"
+        id="wallColor"
+        defaultValue="#000000"
+        setValue={setWallColor}
+        divData={pageStyles.userInput}
+      />
+      <ColorInput
+        label="Path Color"
+        id="pathColor"
+        defaultValue="#FFFFFF"
+        setValue={setPathColor}
+        divData={pageStyles.userInput}
+      />
       <div className={!showSolutionCheckbox ? mainStyles.hidden : ''}>
-        <div className={pageStyles.userInput}>
-          <label htmlFor="solutionColor">Solution Color</label>
-          <input
-            type="color"
-            id="solutionColor"
-            name="solutionColor"
-            defaultValue="#FF0000"
-            onBlur={(e) => {
-              setSolutionColor(e.target.value);
-            }}
-          />
-        </div>
+        <ColorInput
+          label="Solution Color"
+          id="solutionColor"
+          defaultValue="#FF0000"
+          setValue={setSolutionColor}
+          divData={pageStyles.userInput}
+        />
       </div>
       <div className={!showEntryExitCheckbox ? mainStyles.hidden : ''}>
-        <div className={pageStyles.userInput}>
-          <label htmlFor="entryColor">Entry Color</label>
-          <input
-            type="color"
-            id="entryColor"
-            name="entryColor"
-            defaultValue="#00FF00"
-            onBlur={(e) => {
-              setEntryColor(e.target.value);
-            }}
-          />
-        </div>
-        <div className={pageStyles.userInput}>
-          <label htmlFor="exitColor">Exit Color</label>
-          <input
-            type="color"
-            id="exitColor"
-            name="exitColor"
-            defaultValue="#FF0000"
-            onBlur={(e) => {
-              setExitColor(e.target.value);
-            }}
-          />
-        </div>
+        <ColorInput
+          label="Entry Color"
+          id="entryColor"
+          defaultValue="#00FF00"
+          setValue={setEntryColor}
+          divData={pageStyles.userInput}
+        />
+        <ColorInput
+          label="Exit Color"
+          id="exitColor"
+          defaultValue="#FF0000"
+          setValue={setExitColor}
+          divData={pageStyles.userInput}
+        />
       </div>
     </div>
   );
