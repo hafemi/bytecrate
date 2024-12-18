@@ -1,6 +1,5 @@
 'use client';
 import {
-  EntryAndExit,
   handleGenerationButtonClicked,
   MazeGenerator,
 } from '@/components/tools/maze-generator/button-handler';
@@ -9,7 +8,8 @@ import {
   Checkboxes,
   InputFields
 } from '@/components/tools/maze-generator/input';
-import { getNumberFromString } from '@/lib/utils';
+import { MazeEntryAndExit } from '@/lib/types/tools';
+import { getNumberFromString, } from '@/lib/utils';
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';
@@ -19,7 +19,7 @@ export default function Home() {
   const [height, setHeight] = useState('15');
   const [animationSpeed, setAnimationSpeed] = useState('0');
   const [startDirections, setStartDirections] = useState('1');
-  const [entryAndExit, setEntryAndExit] = useState(EntryAndExit.TopAndBottom);
+  const [entryAndExit, setEntryAndExit] = useState(MazeEntryAndExit.TopAndBottom);
 
   const [animateCheckbox, setAnimateCheckbox] = useState(false);
   const [showSolutionCheckbox, setShowSolutionCheckbox] = useState(false);
