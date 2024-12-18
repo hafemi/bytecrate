@@ -1,6 +1,5 @@
 import mainStyles from '@/app/page.module.css';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface NumberInputProps {
   label: string;

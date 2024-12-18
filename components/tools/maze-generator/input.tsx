@@ -240,7 +240,3 @@ export const CanvaColors: React.FC<CanvaColorsProps> = ({
     </div>
   );
 };
-
-export function getNumberFromString(value: string): number {
-  return isNaN(parseInt(value)) ? 0 : parseInt(value);
-}

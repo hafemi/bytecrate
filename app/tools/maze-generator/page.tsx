@@ -5,11 +5,11 @@ import {
   MazeGenerator,
 } from '@/components/tools/maze-generator/button-handler';
 import {
+  CanvaColors,
   Checkboxes,
-  getNumberFromString,
-  InputFields,
-  CanvaColors
+  InputFields
 } from '@/components/tools/maze-generator/input';
+import { getNumberFromString } from '@/lib/utils';
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';

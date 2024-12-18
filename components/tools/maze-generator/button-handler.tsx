@@ -1,4 +1,5 @@
 import { maxValues, minValues } from '@/components/tools/maze-generator/input';
+import { sleep, turnToOddNumber, getRandomOddNumber } from '@/lib/utils';
 import { Dispatch, SetStateAction } from 'react';
 
 enum MazeCellValue {
@@ -88,8 +89,8 @@ export class MazeGenerator {
     public entryColor: string,
     public exitColor: string
   ) {
-    this.width = this.turnToOddNumber(this.width);
-    this.height = this.turnToOddNumber(this.height);
+    this.width = turnToOddNumber(this.width);
+    this.height = turnToOddNumber(this.height);
     this.maze = this.initMaze();
   }
 
@@ -106,8 +107,8 @@ export class MazeGenerator {
   }
 
   async generateMaze(): Promise<void> {
-    const x = this.getRandomOddNumber(1, this.width - 2);
-    const y = this.getRandomOddNumber(1, this.height - 2);
+    const x = getRandomOddNumber(1, this.width - 2);
+    const y = getRandomOddNumber(1, this.height - 2);
 
     this.maze = this.initMaze();
     this.maze[y][x] = MazeCellValue.Path;
@@ -212,8 +213,8 @@ export class MazeGenerator {
   }
 
   createEntryAndExitForMaze(): void {
-    const middlePointX = this.turnToOddNumber(Math.floor(this.width / 2));
-    const middlePointY = this.turnToOddNumber(Math.floor(this.height / 2));
+    const middlePointX = turnToOddNumber(Math.floor(this.width / 2));
+    const middlePointY = turnToOddNumber(Math.floor(this.height / 2));
     const OFFSET_ONE = 1;
     const OFFSET_TWO = 2;
 
@@ -299,15 +300,6 @@ export class MazeGenerator {
         break;
     }
   }
-
-  turnToOddNumber(value: number): number {
-    return value % 2 === 0 ? value + 1 : value;
-  }
-
-  getRandomOddNumber(min: number, max: number): number {
-    const num = Math.floor(Math.random() * (max - min)) + min;
-    return num % 2 === 0 ? num + 1 : num;
-  }
 }
 
 function validateElementsDimensions(options: {
@@ -331,8 +323,4 @@ function validateElementsDimensions(options: {
   }
 
   return true;
-}
-
-async function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
