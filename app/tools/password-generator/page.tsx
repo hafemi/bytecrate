@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import styles from './page.module.css';
 import { InputFields } from '@/components/tools/password-generator/input';
 
 export default function Home() {
@@ -11,9 +10,9 @@ export default function Home() {
   const [useSpecialCharacters, setUseSpecialCharacters] = useState(true);
   
   return (
-    <div className={styles.page}>
+    <div>
       <title>ByteCrate - Password Generator</title>
-      <main className={styles.main}>
+      <main>
         <h1>PASSWORD GENERATOR</h1>
         <div>
           <InputFields

@@ -1,12 +1,11 @@
 'use client';
 import Link from 'next/link';
-import styles from './page.module.css';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div>
       <title>ByteCrate - Homepage</title>
-      <main className={styles.main}>
+      <main>
         <p>Collection of different Tools and Games</p>
         <section>
           <h2>Tools</h2>

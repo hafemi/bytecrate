@@ -34,9 +34,9 @@ export default function Home() {
   const [maze, setMaze] = useState<MazeGenerator | null>(null);
 
   return (
-    <div className={styles.page}>
+    <div>
       <title>ByteCrate - Maze Generator</title>
-      <main className={styles.main}>
+      <main>
         <h1 className={styles.heading}>MAZE GENERATOR</h1>
         <div className={styles.userInputGroup}>
           <InputFields

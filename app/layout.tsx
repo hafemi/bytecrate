@@ -11,9 +11,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={styles.page}>
         <Header />
-        {children}
+        <div className={styles.main}>
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
