@@ -1,4 +1,5 @@
 import React from 'react';
+import { PWGenLengthRange } from '@/lib/types/tools';
 
 interface InputFieldsProps {
   passwordLength: string;
@@ -12,11 +13,6 @@ interface InputFieldsProps {
   setUseNumbers: React.Dispatch<React.SetStateAction<boolean>>;
   setUseSpecialCharacters: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-export const passwordLengthRange: Record<string, number> = {
-  min: 1,
-  max: 512,
-};
 
 
 export const InputFields: React.FC<InputFieldsProps> = ({
@@ -38,16 +34,16 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         <input
           type="number"
           id="passwordLength"
-          placeholder={`${passwordLengthRange.min}-${passwordLengthRange.max}`}
+          placeholder={`${PWGenLengthRange.min}-${PWGenLengthRange.max}`}
           value={passwordLength}
           onChange={(e) => setPasswordLength(getValidValue(e.target.value))}
         />
         <input
           type="range"
           id="passwordLength"
-          min={passwordLengthRange.min}
-          max={passwordLengthRange.max}
-          value={passwordLength === '' ? passwordLengthRange.min : parseInt(passwordLength)}
+          min={PWGenLengthRange.min}
+          max={PWGenLengthRange.max}
+          value={passwordLength === '' ? PWGenLengthRange.min : parseInt(passwordLength)}
           onChange={(e) => setPasswordLength(getValidValue(e.target.value))}
         />
       </div>
@@ -100,9 +96,9 @@ function getValidValue(value: string): string {
   switch (true) {
     case isNaN(truncatedNumber):
       return '';
-    case truncatedNumber > passwordLengthRange.max:
-      return passwordLengthRange.max.toString();
-    case truncatedNumber < passwordLengthRange.min:
+    case truncatedNumber > PWGenLengthRange.max:
+      return PWGenLengthRange.max.toString();
+    case truncatedNumber < PWGenLengthRange.min:
       return '';
     default:
       return truncatedNumber.toString();

@@ -1,12 +1,9 @@
-
-import pageStyles from '@/app/tools/maze-generator/page.module.css';
 import mainStyles from '@/app/page.module.css';
-import { EntryAndExit, MazeGenerator } from '@/components/tools/maze-generator/button-handler';
+import pageStyles from '@/app/tools/maze-generator/page.module.css';
+import { MazeGenerator } from '@/components/tools/maze-generator/button-handler';
+import { ColorInput, NumberInput } from '@/lib/components/html-inputs';
+import { MazeEntryAndExit, MazeMaxValues, MazeMinValues } from '@/lib/types/tools';
 import React from 'react';
-import {
-  NumberInput,
-  ColorInput
- } from '@/lib/components/html-inputs';
 
 interface InputFieldsProps {
   width: string;
@@ -21,11 +18,11 @@ interface InputFieldsProps {
 }
 
 interface CheckboxesProps {
-  entryAndExit: EntryAndExit;
+  entryAndExit: MazeEntryAndExit;
   showEntryExitCheckbox: boolean;
   showSolutionCheckbox: boolean;
   animateCheckbox: boolean;
-  setEntryAndExit: React.Dispatch<React.SetStateAction<EntryAndExit>>;
+  setEntryAndExit: React.Dispatch<React.SetStateAction<MazeEntryAndExit>>;
   setShowSolutionCheckbox: React.Dispatch<React.SetStateAction<boolean>>;
   setShowEntryExitCheckbox: React.Dispatch<React.SetStateAction<boolean>>;
   setAnimateCheckbox: React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,20 +38,6 @@ interface CanvaColorsProps {
   setEntryColor: React.Dispatch<React.SetStateAction<string>>;
   setExitColor: React.Dispatch<React.SetStateAction<string>>;
 }
-
-export const minValues: Record<string, number> = {
-  width: 5,
-  height: 5,
-  startDirections: 1,
-  speed: 0,
-};
-
-export const maxValues: Record<string, number> = {
-  width: 150,
-  height: 150,
-  startDirections: 4,
-  speed: 1000,
-};
 
 export const InputFields: React.FC<InputFieldsProps> = ({
   width,
@@ -72,8 +55,8 @@ export const InputFields: React.FC<InputFieldsProps> = ({
       <NumberInput
         label="Width"
         id="width"
-        min={minValues.width}
-        max={maxValues.width}
+        min={MazeMinValues.width}
+        max={MazeMaxValues.width}
         value={width}
         setValue={setWidth}
         divData={pageStyles.userInput}
@@ -81,8 +64,8 @@ export const InputFields: React.FC<InputFieldsProps> = ({
       <NumberInput
         label="Height"
         id="height"
-        min={minValues.height}
-        max={maxValues.height}
+        min={MazeMinValues.height}
+        max={MazeMaxValues.height}
         value={height}
         setValue={setHeight}
         divData={pageStyles.userInput}
@@ -91,8 +74,8 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         <NumberInput
           label="Speed (ms)"
           id="speedInMS"
-          min={minValues.speed}
-          max={maxValues.speed}
+          min={MazeMinValues.speed}
+          max={MazeMaxValues.speed}
           value={animationSpeed}
           setValue={setAnimationSpeed}
           divData={pageStyles.userInput}
@@ -100,8 +83,8 @@ export const InputFields: React.FC<InputFieldsProps> = ({
         <NumberInput
           label="Start Directions"
           id="startDirections"
-          min={minValues.startDirections}
-          max={maxValues.startDirections}
+          min={MazeMinValues.startDirections}
+          max={MazeMaxValues.startDirections}
           value={startDirections}
           setValue={setStartDirections}
           divData={pageStyles.userInput}
@@ -129,14 +112,14 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
         <select
           id="entryAndExit"
           value={entryAndExit}
-          onChange={(e) => setEntryAndExit(e.target.value as EntryAndExit)}
+          onChange={(e) => setEntryAndExit(e.target.value as MazeEntryAndExit)}
         >
-          <option value={EntryAndExit.TopAndBottom}>Top and Bottom</option>
-          <option value={EntryAndExit.LeftAndRight}>Left and Right</option>
-          <option value={EntryAndExit.DiagonalTopLeft}>Diagonal | Top Left</option>
-          <option value={EntryAndExit.DiagonalLeftTop}>Diagonal | Left Top</option>
-          <option value={EntryAndExit.Random}>Random</option>
-          <option value={EntryAndExit.None}>None</option>
+          <option value={MazeEntryAndExit.TopAndBottom}>Top and Bottom</option>
+          <option value={MazeEntryAndExit.LeftAndRight}>Left and Right</option>
+          <option value={MazeEntryAndExit.DiagonalTopLeft}>Diagonal | Top Left</option>
+          <option value={MazeEntryAndExit.DiagonalLeftTop}>Diagonal | Left Top</option>
+          <option value={MazeEntryAndExit.Random}>Random</option>
+          <option value={MazeEntryAndExit.None}>None</option>
         </select>
       </div>
       <div className={pageStyles.userInput}>

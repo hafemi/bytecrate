@@ -1,47 +1,16 @@
-import { maxValues, minValues } from '@/components/tools/maze-generator/input';
-import { sleep, turnToOddNumber, getRandomOddNumber } from '@/lib/utils';
-import { Dispatch, SetStateAction } from 'react';
-
-enum MazeCellValue {
-  Path = 0,
-  Wall = 1,
-  Solution = 2,
-}
-
-export enum EntryAndExit {
-  TopAndBottom = 'top_and_bottom',
-  LeftAndRight = 'left_and_right',
-  DiagonalTopLeft = 'diagonal_top_left',
-  DiagonalLeftTop = 'diagonal_left_top',
-  Random = 'random',
-  None = 'none',
-}
-
-interface MazeGenerationConfig {
-  width: number;
-  height: number;
-  startDirections: number;
-  entryAndExit: EntryAndExit;
-  animationSpeed: number;
-
-  animateCheckbox: boolean;
-  showSolutionCheckbox: boolean;
-  showEntryExitCheckbox: boolean;
-
-  pathColor: string;
-  wallColor: string;
-  solutionColor: string;
-  entryColor: string;
-  exitColor: string;
-
-  maze: MazeGenerator | null;
-  setMaze: Dispatch<SetStateAction<MazeGenerator | null>>;
-}
-
-interface Coordinate {
-  row: number;
-  col: number;
-}
+import {
+  Coordinate,
+  MazeCellValue,
+  MazeEntryAndExit,
+  MazeGenerationConfig,
+  MazeMaxValues,
+  MazeMinValues
+} from '@/lib/types/tools';
+import {
+  getRandomOddNumber,
+  sleep,
+  turnToOddNumber
+} from '@/lib/utils';
 
 export function handleGenerationButtonClicked(values: MazeGenerationConfig): void {
   const isValid = validateElementsDimensions(values);
@@ -78,7 +47,7 @@ export class MazeGenerator {
     public width: number,
     public height: number,
     public startDirections: number,
-    public entryAndExit: EntryAndExit,
+    public entryAndExit: MazeEntryAndExit,
     public animate: boolean,
     public animationSpeed: number,
     public showSolution: boolean,
@@ -133,7 +102,7 @@ export class MazeGenerator {
   }
 
   async solveMaze(startRow: number, startCol: number): Promise<void> {
-    if (this.entryAndExit !== EntryAndExit.None && (await this.findSolutionPath(startRow, startCol))) {
+    if (this.entryAndExit !== MazeEntryAndExit.None && (await this.findSolutionPath(startRow, startCol))) {
       this.maze[this.exitPoint.row][this.exitPoint.col] = MazeCellValue.Solution;
     }
   }
@@ -226,28 +195,28 @@ export class MazeGenerator {
     };
 
     let entryAndExit = this.entryAndExit;
-    if (entryAndExit == EntryAndExit.Random)
+    if (entryAndExit == MazeEntryAndExit.Random)
       entryAndExit = [
-        EntryAndExit.TopAndBottom,
-        EntryAndExit.LeftAndRight,
-        EntryAndExit.DiagonalTopLeft,
-        EntryAndExit.DiagonalLeftTop,
+        MazeEntryAndExit.TopAndBottom,
+        MazeEntryAndExit.LeftAndRight,
+        MazeEntryAndExit.DiagonalTopLeft,
+        MazeEntryAndExit.DiagonalLeftTop,
       ][Math.floor(Math.random() * 4)];
 
     switch (entryAndExit) {
-      case EntryAndExit.TopAndBottom:
+      case MazeEntryAndExit.TopAndBottom:
         setEntryAndExit(0, middlePointX, this.height - 1, middlePointX);
         break;
-      case EntryAndExit.LeftAndRight:
+      case MazeEntryAndExit.LeftAndRight:
         setEntryAndExit(middlePointY, 0, middlePointY, this.width - 1);
         break;
-      case EntryAndExit.DiagonalTopLeft:
+      case MazeEntryAndExit.DiagonalTopLeft:
         setEntryAndExit(0, OFFSET_ONE, this.height - 1, this.width - OFFSET_TWO);
         break;
-      case EntryAndExit.DiagonalLeftTop:
+      case MazeEntryAndExit.DiagonalLeftTop:
         setEntryAndExit(OFFSET_ONE, 0, this.height - OFFSET_TWO, this.width - 1);
         break;
-      case EntryAndExit.DiagonalLeftTop:
+      case MazeEntryAndExit.DiagonalLeftTop:
         setEntryAndExit(OFFSET_ONE, 0, this.height - OFFSET_TWO, this.width - 1);
         break;
       default:
@@ -278,7 +247,11 @@ export class MazeGenerator {
     showSolution: boolean;
     showEntryExit: boolean;
   }): void {
-    if (options.showEntryExit && this.entryAndExit !== EntryAndExit.None && this.entryAndExit !== EntryAndExit.Random) {
+    if (
+      options.showEntryExit &&
+      this.entryAndExit !== MazeEntryAndExit.None &&
+      this.entryAndExit !== MazeEntryAndExit.Random
+    ) {
       if (options.coordinate.row === this.entryPoint.row && options.coordinate.col === this.entryPoint.col) {
         options.ctx.fillStyle = this.entryColor;
         return;
@@ -310,10 +283,10 @@ function validateElementsDimensions(options: {
 }): boolean {
   // prettier-ignore
   const dimensions = [
-    { value: options.width, min: minValues.width, max: maxValues.width },
-    { value: options.height, min: minValues.height, max: maxValues.height },
-    { value: options.startDirections, min: minValues.startDirections, max: maxValues.startDirections },
-    { value: options.animationSpeed, min: minValues.speed, max: maxValues.speed },
+    { value: options.width, min: MazeMinValues.width, max: MazeMaxValues.width },
+    { value: options.height, min: MazeMinValues.height, max: MazeMaxValues.height },
+    { value: options.startDirections, min: MazeMinValues.startDirections, max: MazeMaxValues.startDirections },
+    { value: options.animationSpeed, min: MazeMinValues.speed, max: MazeMaxValues.speed },
   ];
 
   for (const { value, min, max } of dimensions) {
