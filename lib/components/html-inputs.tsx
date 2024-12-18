@@ -2,7 +2,6 @@ import mainStyles from '@/app/page.module.css';
 import React from 'react';
 import { useState } from 'react';
 
-
 interface NumberInputProps {
   label: string;
   id: string;
@@ -72,12 +71,7 @@ export const ColorInput: React.FC<ColorInputProps> = React.memo(function ColorIn
   return (
     <div className={divData}>
       <label htmlFor={id}>{label}</label>
-      <input
-        type="color"
-        id={id}
-        defaultValue={defaultValue}
-        onBlur={handleChange}
-      />
+      <input type="color" id={id} defaultValue={defaultValue} onBlur={handleChange} />
     </div>
   );
-})
+});

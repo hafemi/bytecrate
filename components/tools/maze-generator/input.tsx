@@ -6,7 +6,7 @@ import React from 'react';
 import {
   NumberInput,
   ColorInput
- } from '@/components/utils/input-creators';
+ } from '@/lib/components/html-inputs';
 
 interface InputFieldsProps {
   width: string;
