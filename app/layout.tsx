@@ -28,7 +28,7 @@ const Header = () => {
         ${styles.logoContainer}
         ${styles.headerLogoPadding}`}
       >
-        <Image src="/images/temporary_logo.png" alt="ByteCrate logo" width={70} height={70} />
+        <Image src="/assets/bytecraft_logo.png" alt="ByteCrate logo" width={70} height={70} />
         <p>ByteCrate</p>
       </div>
       <nav className={styles.headerNavigation}>
@@ -55,7 +55,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.logoContainer}>
-        <Image src="/images/temporary_logo.png" alt="ByteCrate logo" width={50} height={50} />
+        <Image src="/assets/bytecraft_logo.png" alt="ByteCrate logo" width={50} height={50} />
         <p>ByteCrate</p>
       </div>
       <nav className={styles.footerNavigation}>
