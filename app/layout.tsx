@@ -1,8 +1,8 @@
-'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import './globals.css';
 import styles from './layout.module.css';
+import { Metadata } from 'next';
 
 export default function RootLayout({
   children,
@@ -69,4 +69,9 @@ const Footer = () => {
       </nav>
     </footer>
   );
+};
+
+export const metadata: Metadata = {
+  title: 'ByteCrate',
+  description: 'Collection of Games and Tools',
 };
