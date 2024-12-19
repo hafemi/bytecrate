@@ -1,7 +1,7 @@
 import React from 'react';
 import { PWGenLengthRange } from '@/lib/types/tools';
 
-interface InputFieldsProps {
+interface InteractivesProps {
   passwordLength: string;
   useUppercase: boolean;
   useLowercase: boolean;
@@ -14,7 +14,7 @@ interface InputFieldsProps {
   setUseSpecialCharacters: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const InputFields: React.FC<InputFieldsProps> = ({
+export const InputFields: React.FC<InteractivesProps> = ({
   useUppercase,
   useLowercase,
   useNumbers,
