@@ -1,5 +1,6 @@
 import React from 'react';
 import { PWGenLengthRange } from '@/lib/types/tools';
+import { NumberInput } from '@/components/common/number-input';
 
 interface InteractivesProps {
   passwordLength: string;
@@ -29,13 +30,13 @@ export const InputFields: React.FC<InteractivesProps> = ({
   return (
     <div>
       <div>
-        <label htmlFor="passwordLength">Password Length</label>
-        <input
-          type="number"
+        <NumberInput
+          label="Password Length"
           id="passwordLength"
-          placeholder={`${PWGenLengthRange.min}-${PWGenLengthRange.max}`}
+          min={PWGenLengthRange.min}
+          max={PWGenLengthRange.max}
           value={passwordLength}
-          onChange={(e) => setPasswordLength(getValidValue(e.target.value))}
+          setValue={setPasswordLength}
         />
         <input
           type="range"
