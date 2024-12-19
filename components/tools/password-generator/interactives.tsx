@@ -2,6 +2,7 @@ import React from 'react';
 import { PWGenLengthRange } from '@/lib/types/tools';
 import { NumberInput } from '@/components/common/number-input';
 import { RangeInput } from '@/components/common/range-input';
+import { CheckboxInput } from '@/components/common/checkbox-input';
 
 interface InteractivesProps {
   passwordLength: string;
@@ -48,37 +49,30 @@ export const InputFields: React.FC<InteractivesProps> = ({
           setValue={setPasswordLength}
         />
       </div>
-      <div>
-        <label htmlFor="useUppercase">Uppercase</label>
-        <input
-          type="checkbox"
-          id="useUppercase"
-          checked={useUppercase}
-          onChange={() => setUseUppercase(!useUppercase)}
-        />
-      </div>
-      <div>
-        <label htmlFor="useLowercase">Lowercase</label>
-        <input
-          type="checkbox"
-          id="useLowercase"
-          checked={useLowercase}
-          onChange={() => setUseLowercase(!useLowercase)}
-        />
-      </div>
-      <div>
-        <label htmlFor="useNumbers">Numbers</label>
-        <input type="checkbox" id="useNumbers" checked={useNumbers} onChange={() => setUseNumbers(!useNumbers)} />
-      </div>
-      <div>
-        <label htmlFor="useSpecialCharacters">Special characters</label>
-        <input
-          type="checkbox"
-          id="useSpecialCharacters"
-          checked={useSpecialCharacters}
-          onChange={() => setUseSpecialCharacters(!useSpecialCharacters)}
-        />
-      </div>
+      <CheckboxInput
+        label="Uppercase"
+        id="useUppercase"
+        checked={useUppercase}
+        setChecked={setUseUppercase}
+      />
+      <CheckboxInput
+        label="Lowercase"
+        id="useLowercase"
+        checked={useLowercase}
+        setChecked={setUseLowercase}
+      />
+      <CheckboxInput
+        label="Numbers"
+        id="useNumbers"
+        checked={useNumbers}
+        setChecked={setUseNumbers}
+      />
+      <CheckboxInput
+        label="Special characters"
+        id="useSpecialCharacters"
+        checked={useSpecialCharacters}
+        setChecked={setUseSpecialCharacters}
+      />
     </div>
   );
 };
