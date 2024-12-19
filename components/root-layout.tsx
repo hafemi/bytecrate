@@ -63,7 +63,7 @@ const FooterNavigation = () => {
     <nav className={styles.footerNavigation}>
       <Link href="">About us</Link>
       <Link href="">Contact</Link>
-      <Link href="https://github.com/hafemi/byte-bay" target="_blank" rel="noopener noreferrer">
+      <Link href="https://github.com/hafemi/bytecrate" target="_blank" rel="noopener noreferrer">
         Github Repository
       </Link>
     </nav>
