@@ -14,7 +14,6 @@ interface InputFieldsProps {
   setUseSpecialCharacters: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-
 export const InputFields: React.FC<InputFieldsProps> = ({
   useUppercase,
   useLowercase,
@@ -67,12 +66,7 @@ export const InputFields: React.FC<InputFieldsProps> = ({
       </div>
       <div>
         <label htmlFor="useNumbers">Numbers</label>
-        <input
-          type="checkbox"
-          id="useNumbers"
-          checked={useNumbers}
-          onChange={() => setUseNumbers(!useNumbers)}
-        />
+        <input type="checkbox" id="useNumbers" checked={useNumbers} onChange={() => setUseNumbers(!useNumbers)} />
       </div>
       <div>
         <label htmlFor="useSpecialCharacters">Special characters</label>
@@ -90,7 +84,7 @@ export const InputFields: React.FC<InputFieldsProps> = ({
 function getValidValue(value: string): string {
   const parsedNumber = parseInt(value);
   if (isNaN(parsedNumber)) return '';
-  
+
   const truncatedNumber = Math.trunc(parseInt(value));
 
   switch (true) {

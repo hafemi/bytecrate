@@ -108,7 +108,7 @@ export class MazeGenerator {
   }
 
   async findSolutionPath(row: number, col: number): Promise<boolean> {
-    const directionOffsets: { [key: string]: Coordinate } = {
+    const directionOffsets: { [key: string]: Coordinate; } = {
       up: { row: -1, col: 0 },
       down: { row: 1, col: 0 },
       left: { row: 0, col: -1 },

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { InputFields } from '@/components/tools/password-generator/input';
+import { InputFields } from '@/components/tools/password-generator/interactives';
 
 export default function Home() {
   const [passwordLength, setPasswordLength] = useState('20');

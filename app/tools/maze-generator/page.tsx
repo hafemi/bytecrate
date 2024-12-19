@@ -1,15 +1,8 @@
 'use client';
-import {
-  handleGenerationButtonClicked,
-  MazeGenerator,
-} from '@/components/tools/maze-generator/button-handler';
-import {
-  CanvaColors,
-  Checkboxes,
-  InputFields
-} from '@/components/tools/maze-generator/input';
+import { handleGenerationButtonClicked, MazeGenerator } from '@/components/tools/maze-generator/button-handler';
+import { CanvaColors, Checkboxes, InputFields } from '@/components/tools/maze-generator/interactives';
 import { MazeEntryAndExit } from '@/lib/types/tools';
-import { getNumberFromString, } from '@/lib/utils';
+import { getNumberFromString } from '@/lib/utils';
 import { useState } from 'react';
 import { FaArrowDown, FaGear } from 'react-icons/fa6';
 import styles from './page.module.css';

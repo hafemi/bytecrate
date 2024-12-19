@@ -1,4 +1,4 @@
-import { Footer, Header } from '@/lib/components/root-layout';
+import { Footer, Header } from '@/components/root-layout';
 import { Metadata } from 'next';
 import './globals.css';
 import styles from './layout.module.css';
@@ -12,9 +12,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={styles.page}>
         <Header />
-        <div className={styles.main}>
-          {children}
-        </div>
+        <div className={styles.main}>{children}</div>
         <Footer />
       </body>
     </html>
