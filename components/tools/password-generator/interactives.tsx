@@ -1,6 +1,7 @@
 import React from 'react';
 import { PWGenLengthRange } from '@/lib/types/tools';
 import { NumberInput } from '@/components/common/number-input';
+import { RangeInput } from '@/components/common/range-input';
 
 interface InteractivesProps {
   passwordLength: string;
@@ -38,13 +39,13 @@ export const InputFields: React.FC<InteractivesProps> = ({
           value={passwordLength}
           setValue={setPasswordLength}
         />
-        <input
-          type="range"
+        <RangeInput
+          label="Password Length"
           id="passwordLength"
           min={PWGenLengthRange.min}
           max={PWGenLengthRange.max}
-          value={passwordLength === '' ? PWGenLengthRange.min : parseInt(passwordLength)}
-          onChange={(e) => setPasswordLength(getValidValue(e.target.value))}
+          value={passwordLength}
+          setValue={setPasswordLength}
         />
       </div>
       <div>
@@ -81,21 +82,3 @@ export const InputFields: React.FC<InteractivesProps> = ({
     </div>
   );
 };
-
-function getValidValue(value: string): string {
-  const parsedNumber = parseInt(value);
-  if (isNaN(parsedNumber)) return '';
-
-  const truncatedNumber = Math.trunc(parseInt(value));
-
-  switch (true) {
-    case isNaN(truncatedNumber):
-      return '';
-    case truncatedNumber > PWGenLengthRange.max:
-      return PWGenLengthRange.max.toString();
-    case truncatedNumber < PWGenLengthRange.min:
-      return '';
-    default:
-      return truncatedNumber.toString();
-  }
-}
