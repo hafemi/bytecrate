@@ -1,4 +1,5 @@
 import mainStyles from '@/app/page.module.css';
+import style from '@/components/common/styles.module.css';
 import React, { useState } from 'react';
 
 interface NumberInputProps {
@@ -35,6 +36,7 @@ export const NumberInput: React.FC<NumberInputProps> = React.memo(function Numbe
       <label htmlFor={id}>{label}</label>
       <input
         className={`
+          ${style.numberInput}
           ${!isValid ? mainStyles.invalid : ''}
           ${value === '' ? mainStyles.emptyInput : mainStyles.input}
         `}

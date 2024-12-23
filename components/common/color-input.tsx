@@ -1,4 +1,5 @@
 import React from 'react';
+import style from '@/components/common/styles.module.css';
 
 interface ColorInputProps {
   label: string;
@@ -22,7 +23,7 @@ export const ColorInput: React.FC<ColorInputProps> = React.memo(function ColorIn
   return (
     <div className={divData}>
       <label htmlFor={id}>{label}</label>
-      <input type="color" id={id} defaultValue={defaultValue} onBlur={handleChange} />
+      <input className={style.colorInput} type="color" id={id} defaultValue={defaultValue} onBlur={handleChange} />
     </div>
   );
 });

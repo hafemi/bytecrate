@@ -1,0 +1,12 @@
+.colorInput {
+  border-radius: 7px;
+  border: 1px solid #ccc;
+}
+
+.numberInput {
+  font-size: 1em;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid #ccc;
+  width: 6em;
+}
