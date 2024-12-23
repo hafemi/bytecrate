@@ -41,7 +41,7 @@ export const InputFields: React.FC<InteractivesProps> = ({
           setValue={setPasswordLength}
         />
         <RangeInput
-          label="Password Length"
+          label=""
           id="passwordLength"
           min={PWGenLengthRange.min}
           max={PWGenLengthRange.max}
