@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { PWGenLengthRange } from '@/lib/types/tools';
-import { NumberInput } from '@/components/common/number-input';
-import { RangeInput } from '@/components/common/range-input';
-import { CheckboxInput } from '@/components/common/checkbox-input';
+import {
+  NumberInput,
+  RangeInput,
+  CheckboxInput,
+ } from '@/components/common/inputs';
 import { generatePassword, validateBoxes } from '@/components/tools/password-generator/generation';
 
 interface InteractivesProps {
