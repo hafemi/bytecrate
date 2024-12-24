@@ -7,6 +7,7 @@ interface RangeInputProps {
   max: number;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   divData?: string;
 }
 
@@ -17,10 +18,12 @@ export const RangeInput: React.FC<RangeInputProps> = React.memo(function RangeIn
   max,
   value,
   setValue,
+  onChange,
   divData,
 }) { 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    if (onChange) onChange(e);
   };
   
   return (

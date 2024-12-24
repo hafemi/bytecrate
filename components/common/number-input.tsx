@@ -9,6 +9,7 @@ interface NumberInputProps {
   max: number;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   divData?: string;
 }
 
@@ -19,6 +20,7 @@ export const NumberInput: React.FC<NumberInputProps> = React.memo(function Numbe
   max,
   value,
   setValue,
+  onChange,
   divData,
 }) {
   const [isValid, setIsValid] = useState(true);
@@ -29,6 +31,9 @@ export const NumberInput: React.FC<NumberInputProps> = React.memo(function Numbe
 
     const newValueInt = parseInt(newValue, 10);
     setIsValid(newValue === '' || (newValueInt >= min && newValueInt <= max));
+    if (isValid && onChange) {
+      onChange(e);
+    }
   };
 
   return (

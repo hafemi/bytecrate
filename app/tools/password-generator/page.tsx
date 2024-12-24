@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { InputFields } from '@/components/tools/password-generator/interactives';
 
 export default function Home() {
+  const [password, setPassword] = useState('');
   const [passwordLength, setPasswordLength] = useState('20');
   const [useUppercase, setUseUppercase] = useState(true);
   const [useLowercase, setUseLowercase] = useState(true);
@@ -11,9 +12,19 @@ export default function Home() {
 
   return (
     <div>
-      <title>ByteCrate - Password Generator</title> 
+      <title>ByteCrate - Password Generator</title>
       <main>
         <h1>PASSWORD GENERATOR</h1>
+        <div>
+          <input type="text" value={password} readOnly />
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(password);
+            }}
+          >
+            COPY
+          </button>
+        </div>
         <InputFields
           useUppercase={useUppercase}
           useLowercase={useLowercase}
@@ -25,6 +36,7 @@ export default function Home() {
           setUseNumbers={setUseNumbers}
           setUseSpecialCharacters={setUseSpecialCharacters}
           setPasswordLength={setPasswordLength}
+          setPassword={setPassword}
         />
       </main>
     </div>
