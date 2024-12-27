@@ -61,3 +61,5 @@ export const PWGenLengthRange: Record<string, number> = {
   min: 1,
   max: 512,
 };
+
+export const RPSChoices = ['ROCK', 'PAPER', 'SCISSORS'];

@@ -1,12 +1,11 @@
 'use client';
 import { useState } from 'react';
+import { RPSChoices } from '@/lib/types/tools';
 
 export default function Home() {
     const [playerChoice, setPlayerChoice] = useState('');
     const [computerChoice, setComputerChoice] = useState('');
     const [result, setResult] = useState('');
-
-    const choices = ['ROCK', 'PAPER', 'SCISSORS'];
 
     const defineWinner = (player: string, computer: string) => {
         if (player === computer) {
@@ -23,7 +22,7 @@ export default function Home() {
     };
 
     const handleClick = (choice: string) => {
-        const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+        const randomChoice = RPSChoices[Math.floor(Math.random() * RPSChoices.length)];
         setPlayerChoice(choice);
         setComputerChoice(randomChoice);
         setResult(defineWinner(choice, randomChoice));
@@ -41,8 +40,8 @@ export default function Home() {
             <button onClick={() => handleClick('SCISSORS')}>SCISSORS</button>
         </div>
         <div>
-            <p>Player's choice: {playerChoice}</p>
-            <p>Computer's choice: {computerChoice}</p>
+            <p>Player choice: {playerChoice}</p>
+            <p>Computer choice: {computerChoice}</p>
             <p>Result: {result}</p>
         </div>
       </main>
