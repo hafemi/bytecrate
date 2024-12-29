@@ -195,15 +195,15 @@ export const CanvaColors: React.FC<CanvaColorsProps> = ({
         setValue={setPathColor}
         divData={pageStyles.userInput}
       />
-      <div className={!showSolutionCheckbox ? mainStyles.hidden : ''}>
-        <ColorInput
-          label="Solution Color"
-          id="solutionColor"
-          defaultValue="#FF0000"
-          setValue={setSolutionColor}
-          divData={pageStyles.userInput}
-        />
-      </div>
+      <ColorInput
+        label="Solution Color"
+        id="solutionColor"
+        defaultValue="#FF0000"
+        setValue={setSolutionColor}
+        divData={`
+          ${pageStyles.userInput}
+          ${!showSolutionCheckbox ? mainStyles.hidden : ''}`}
+      />
       <div className={!showEntryExitCheckbox ? mainStyles.hidden : ''}>
         <ColorInput
           label="Entry Color"
