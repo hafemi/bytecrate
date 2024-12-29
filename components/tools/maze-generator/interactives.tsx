@@ -1,6 +1,6 @@
 import mainStyles from '@/app/page.module.css';
 import pageStyles from '@/app/tools/maze-generator/page.module.css';
-import { NumberInput, ColorInput } from '@/components/common/inputs';
+import { NumberInput, ColorInput, CheckboxInput } from '@/components/common/inputs';
 import { MazeGenerator } from '@/components/tools/maze-generator/button-handler';
 import { MazeEntryAndExit, MazeMaxValues, MazeMinValues } from '@/lib/types/tools';
 import React from 'react';
@@ -105,6 +105,19 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
   setShowEntryExitCheckbox,
   setShowSolutionCheckbox,
 }) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    showSolution: boolean,
+    showEntryExit: boolean
+  ) => {
+    if (!maze || maze.isGenerating) return;
+
+    if (e.target.checked)
+      maze.updateCanvas(showSolution, showEntryExit);
+    else
+      maze.updateCanvas(showSolution, showEntryExit);
+  }
+  
   return (
     <div className={pageStyles.userInputContainer}>
       <div className={pageStyles.userInput}>
@@ -122,50 +135,37 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
           <option value={MazeEntryAndExit.None}>None</option>
         </select>
       </div>
-      <div className={pageStyles.userInput}>
-        <label htmlFor="animationSpeedCheckbox">Animation Speed</label>
-        <input
-          id="animationSpeedCheckbox"
-          type="checkbox"
-          onChange={() => {
-            setAnimateCheckbox(!animateCheckbox);
-          }}
-        />
-      </div>
-      <div className={pageStyles.userInput}>
-        <label htmlFor="showSolutionCheckbox">Show Solution</label>
-        <input
-          id="showSolutionCheckbox"
-          type="checkbox"
-          onChange={(e) => {
-            setShowSolutionCheckbox(e.target.checked);
-            if (!maze || maze.isGenerating) return;
-
-            if (e.target.checked) {
-              maze.updateCanvas(true, showEntryExitCheckbox);
-            } else {
-              maze.updateCanvas(false, showEntryExitCheckbox);
-            }
-          }}
-        />
-      </div>
-      <div className={pageStyles.userInput}>
-        <label htmlFor="showEntryExitCheckbox">Show Entry/Exit</label>
-        <input
-          id="showEntryExitCheckbox"
-          type="checkbox"
-          onChange={(e) => {
-            setShowEntryExitCheckbox(e.target.checked);
-            if (!maze || maze.isGenerating) return;
-
-            if (e.target.checked) {
-              maze.updateCanvas(showSolutionCheckbox, true);
-            } else {
-              maze.updateCanvas(showSolutionCheckbox, false);
-            }
-          }}
-        />
-      </div>
+      <CheckboxInput
+        label="Animation Speed"
+        id="animationSpeedCheckbox"
+        checked={animateCheckbox}
+        setChecked={setAnimateCheckbox}
+        divData={pageStyles.userInput}
+      />
+      <CheckboxInput
+        label="Show Solution"
+        id="showSolutionCheckbox"
+        checked={showSolutionCheckbox}
+        setChecked={setShowSolutionCheckbox}
+        divData={pageStyles.userInput}
+        onChange={(e) => {
+          const newValue = !showSolutionCheckbox
+          setShowSolutionCheckbox(newValue);
+          handleChange(e, newValue, showEntryExitCheckbox);
+        }}
+      />
+      <CheckboxInput
+        label="Show Entry/Exit"
+        id="showEntryExitCheckbox"
+        checked={showEntryExitCheckbox}
+        setChecked={setShowEntryExitCheckbox}
+        divData={pageStyles.userInput}
+        onChange={(e) => {
+          const newValue = !showEntryExitCheckbox
+          setShowEntryExitCheckbox(newValue);
+          handleChange(e, showSolutionCheckbox, newValue);
+        }}
+      />
     </div>
   );
 };
