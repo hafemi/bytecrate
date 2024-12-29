@@ -105,19 +105,13 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
   setShowEntryExitCheckbox,
   setShowSolutionCheckbox,
 }) => {
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    showSolution: boolean,
-    showEntryExit: boolean
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, showSolution: boolean, showEntryExit: boolean) => {
     if (!maze || maze.isGenerating) return;
 
-    if (e.target.checked)
-      maze.updateCanvas(showSolution, showEntryExit);
-    else
-      maze.updateCanvas(showSolution, showEntryExit);
-  }
-  
+    if (e.target.checked) maze.updateCanvas(showSolution, showEntryExit);
+    else maze.updateCanvas(showSolution, showEntryExit);
+  };
+
   return (
     <div className={pageStyles.userInputContainer}>
       <div className={pageStyles.userInput}>
@@ -149,7 +143,7 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
         setChecked={setShowSolutionCheckbox}
         divData={pageStyles.userInput}
         onChange={(e) => {
-          const newValue = !showSolutionCheckbox
+          const newValue = !showSolutionCheckbox;
           setShowSolutionCheckbox(newValue);
           handleChange(e, newValue, showEntryExitCheckbox);
         }}
@@ -161,7 +155,7 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
         setChecked={setShowEntryExitCheckbox}
         divData={pageStyles.userInput}
         onChange={(e) => {
-          const newValue = !showEntryExitCheckbox
+          const newValue = !showEntryExitCheckbox;
           setShowEntryExitCheckbox(newValue);
           handleChange(e, showSolutionCheckbox, newValue);
         }}
