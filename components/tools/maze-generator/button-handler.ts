@@ -9,12 +9,25 @@ import {
 import {
   getRandomOddNumber,
   sleep,
-  turnToOddNumber
+  turnToOddNumber,
+  validateDimensions
 } from '@/lib/utils';
+import { Dimension } from '@/lib/types/tools';
 
 export function handleGenerationButtonClicked(values: MazeGenerationConfig): void {
-  const isValid = validateElementsDimensions(values);
-  if (!isValid) return;
+  const dimensions: Dimension[] = [
+    { value: values.width, min: MazeMinValues.width, max: MazeMaxValues.width },
+    { value: values.height, min: MazeMinValues.height, max: MazeMaxValues.height },
+    { value: values.startDirections, min: MazeMinValues.startDirections, max: MazeMaxValues.startDirections },
+    { value: values.animationSpeed, min: MazeMinValues.animationSpeed, max: MazeMaxValues.animationSpeed },
+  ];
+
+  const isValid = validateDimensions(dimensions);
+  if (isValid)
+    createMaze(values);
+}
+
+function createMaze(values: MazeGenerationConfig): void {
   if (values.maze) values.maze.isGenerating = false;
 
   const maze = new MazeGenerator(
@@ -273,27 +286,4 @@ export class MazeGenerator {
         break;
     }
   }
-}
-
-function validateElementsDimensions(options: {
-  width: number;
-  height: number;
-  startDirections: number;
-  animationSpeed: number;
-}): boolean {
-  // prettier-ignore
-  const dimensions = [
-    { value: options.width, min: MazeMinValues.width, max: MazeMaxValues.width },
-    { value: options.height, min: MazeMinValues.height, max: MazeMaxValues.height },
-    { value: options.startDirections, min: MazeMinValues.startDirections, max: MazeMaxValues.startDirections },
-    { value: options.animationSpeed, min: MazeMinValues.speed, max: MazeMaxValues.speed },
-  ];
-
-  for (const { value, min, max } of dimensions) {
-    if (value < min || value > max || isNaN(value)) {
-      return false;
-    }
-  }
-
-  return true;
 }

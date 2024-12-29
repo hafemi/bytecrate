@@ -63,3 +63,9 @@ export const PWGenLengthRange: Record<string, number> = {
 };
 
 export const RPSChoices = ['ROCK', 'PAPER', 'SCISSORS'];
+
+export interface Dimension {
+  value: number;
+  max: number;
+  min: number;
+}

@@ -1,3 +1,8 @@
+
+import {
+  Dimension
+} from '@/lib/types/tools';
+  
 export async function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -13,4 +18,14 @@ export function getRandomOddNumber(min: number, max: number): number {
 
 export function getNumberFromString(value: string): number {
   return isNaN(parseInt(value)) ? 0 : parseInt(value);
+}
+
+export function validateDimensions(dimensions: Dimension[]): boolean {
+  for (const { value, min, max } of dimensions) {
+    if (value < min || value > max || isNaN(value)) {
+      return false;
+    }
+  }
+
+  return true;
 }
