@@ -34,7 +34,7 @@ export function handleGenerationButtonClicked(values: MazeGenerationConfig): voi
   );
 
   values.setMaze(maze);
-  maze.generateMaze();
+  maze.generate();
 }
 
 export class MazeGenerator {
@@ -60,10 +60,10 @@ export class MazeGenerator {
   ) {
     this.width = turnToOddNumber(this.width);
     this.height = turnToOddNumber(this.height);
-    this.maze = this.initMaze();
+    this.maze = this.init();
   }
 
-  initMaze(): number[][] {
+  init(): number[][] {
     const maze = [];
     for (let y = 0; y < this.height; y++) {
       const row = [];
@@ -75,33 +75,33 @@ export class MazeGenerator {
     return maze;
   }
 
-  async generateMaze(): Promise<void> {
+  async generate(): Promise<void> {
     const x = getRandomOddNumber(1, this.width - 2);
     const y = getRandomOddNumber(1, this.height - 2);
 
-    this.maze = this.initMaze();
+    this.maze = this.init();
     this.maze[y][x] = MazeCellValue.Path;
-    await this.awaitMazeCarving(x, y);
+    await this.awaitCarving(x, y);
 
     if (this.isGenerating) {
-      this.createEntryAndExitForMaze();
-      await this.solveMaze(this.entryPoint.row, this.entryPoint.col);
-      this.updateMazeCanvas(this.showSolution, this.showEntryExit);
+      this.createEntryAndExit();
+      await this.solve(this.entryPoint.row, this.entryPoint.col);
+      this.updateCanvas(this.showSolution, this.showEntryExit);
       this.isGenerating = false;
     }
   }
 
-  async awaitMazeCarving(x: number, y: number): Promise<void> {
+  async awaitCarving(x: number, y: number): Promise<void> {
     const promises = [];
 
     for (let i = 0; i < this.startDirections; i++) {
-      promises.push(this.carveMaze(x, y));
+      promises.push(this.carve(x, y));
     }
 
     await Promise.all(promises);
   }
 
-  async solveMaze(startRow: number, startCol: number): Promise<void> {
+  async solve(startRow: number, startCol: number): Promise<void> {
     if (this.entryAndExit !== MazeEntryAndExit.None && (await this.findSolutionPath(startRow, startCol))) {
       this.maze[this.exitPoint.row][this.exitPoint.col] = MazeCellValue.Solution;
     }
@@ -121,7 +121,7 @@ export class MazeGenerator {
 
     this.maze[row][col] = MazeCellValue.Solution;
     if (this.showSolution && this.animate) {
-      this.updateMazeCanvas(this.showSolution, true);
+      this.updateCanvas(this.showSolution, true);
       await sleep(this.animationSpeed);
     }
 
@@ -144,7 +144,7 @@ export class MazeGenerator {
     }
   }
 
-  async carveMaze(x: number, y: number): Promise<void> {
+  async carve(x: number, y: number): Promise<void> {
     if (!this.isGenerating) return;
 
     const dirs = [
@@ -171,17 +171,17 @@ export class MazeGenerator {
         this.maze[ny][nx] = MazeCellValue.Path;
 
         if (this.animate) {
-          this.updateMazeCanvas(false, false);
+          this.updateCanvas(false, false);
           await sleep(this.animationSpeed);
-          await this.carveMaze(nx, ny);
+          await this.carve(nx, ny);
         } else {
-          this.carveMaze(nx, ny);
+          this.carve(nx, ny);
         }
       }
     }
   }
 
-  createEntryAndExitForMaze(): void {
+  createEntryAndExit(): void {
     const middlePointX = turnToOddNumber(Math.floor(this.width / 2));
     const middlePointY = turnToOddNumber(Math.floor(this.height / 2));
     const OFFSET_ONE = 1;
@@ -224,7 +224,7 @@ export class MazeGenerator {
     }
   }
 
-  updateMazeCanvas(showSolution: boolean, showEntryExit: boolean): void {
+  updateCanvas(showSolution: boolean, showEntryExit: boolean): void {
     const mazeCanvas = document.getElementById('mazeCanvas') as HTMLCanvasElement;
     const ctx = mazeCanvas.getContext('2d');
     const multiplier = 10;

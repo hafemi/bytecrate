@@ -142,9 +142,9 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
             if (!maze || maze.isGenerating) return;
 
             if (e.target.checked) {
-              maze.updateMazeCanvas(true, showEntryExitCheckbox);
+              maze.updateCanvas(true, showEntryExitCheckbox);
             } else {
-              maze.updateMazeCanvas(false, showEntryExitCheckbox);
+              maze.updateCanvas(false, showEntryExitCheckbox);
             }
           }}
         />
@@ -159,9 +159,9 @@ export const Checkboxes: React.FC<CheckboxesProps> = ({
             if (!maze || maze.isGenerating) return;
 
             if (e.target.checked) {
-              maze.updateMazeCanvas(showSolutionCheckbox, true);
+              maze.updateCanvas(showSolutionCheckbox, true);
             } else {
-              maze.updateMazeCanvas(showSolutionCheckbox, false);
+              maze.updateCanvas(showSolutionCheckbox, false);
             }
           }}
         />
