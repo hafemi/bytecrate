@@ -33,7 +33,7 @@ export default function Home() {
       <title>ByteCrate - Rock Paper Scissors</title>
       <main>
         <h1>ROCK PAPER SCISSORS</h1>
-        <p>This is an epic Rock Paper Scissors game</p>
+        <p>This sure is Rock Paper Scissors</p>
         <div>
           <button onClick={() => handleClick('ROCK')}>ROCK</button>
           <button onClick={() => handleClick('PAPER')}>PAPER</button>
