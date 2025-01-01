@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { RPSChoices } from '@/lib/types/tools';
+import styles from './page.module.css';
 
 export default function Home() {
   const [playerChoice, setPlayerChoice] = useState('');
@@ -16,9 +17,9 @@ export default function Home() {
       (player === 'PAPER' && computer === 'ROCK') ||
       (player === 'SCISSORS' && computer === 'PAPER')
     ) {
-      return 'PLAYER WINS';
+      return 'YOU WIN';
     }
-    return 'COMPUTER WINS';
+    return 'YOU LOSE';
   };
 
   const handleClick = (choice: string) => {
@@ -29,17 +30,17 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className={styles.page}>
       <title>ByteCrate - Rock Paper Scissors</title>
-      <main>
+      <main className={styles.main}>
         <h1>ROCK PAPER SCISSORS</h1>
-        <p>This sure is Rock Paper Scissors</p>
-        <div>
+        <p>It's dangerous to go alone, choose one of these:</p>
+        <div className={styles.buttons}>
           <button onClick={() => handleClick('ROCK')}>ROCK</button>
           <button onClick={() => handleClick('PAPER')}>PAPER</button>
           <button onClick={() => handleClick('SCISSORS')}>SCISSORS</button>
         </div>
-        <div>
+        <div className={styles.result}>
           <p>Player choice: {playerChoice}</p>
           <p>Computer choice: {computerChoice}</p>
           <p>Result: {result}</p>
