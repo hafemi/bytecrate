@@ -1,21 +1,13 @@
 'use client';
 import { CheckboxInput, NumberInput, RangeInput } from '@/components/common/inputs';
-import {
-  generatePassword,
-  getStrengthScoreIndex,
-  validateBoxes,
-} from '@/components/tools/password-generator/generation';
-import {
-  PWGenLengthRange,
-  PasswordStrength
-} from '@/lib/types/tools';
+import { generatePassword, updateStrengthColor, validateBoxes } from '@/components/tools/password-generator/generation';
+import { PWGenLengthRange } from '@/lib/types/tools';
 import { useEffect, useState } from 'react';
+import styles from './page.module.css';
 
 export default function Home() {
   const [password, setPassword] = useState('');
   const [passwordLength, setPasswordLength] = useState('20');
-  const [passwordStrength, setPasswordStrength] = useState('2');
-  const [passwordStrengthText, setPasswordStrengthText] = useState(PasswordStrength[0]);
   const [useUppercase, setUseUppercase] = useState(true);
   const [useLowercase, setUseLowercase] = useState(true);
   const [useNumbers, setUseNumbers] = useState(true);
@@ -29,7 +21,7 @@ export default function Home() {
       useSpecialCharacters,
       setUseUppercase,
     });
-    
+
     const password = generatePassword({
       useUppercase,
       useLowercase,
@@ -37,11 +29,9 @@ export default function Home() {
       useSpecialCharacters,
       passwordLength,
     });
-    const strengthScore = getStrengthScoreIndex(password);
 
+    updateStrengthColor(password);
     setPassword(password);
-    setPasswordStrength(strengthScore.toString());
-    setPasswordStrengthText(PasswordStrength[strengthScore]);
   }, [useUppercase, useLowercase, useNumbers, useSpecialCharacters, passwordLength, setPassword, setUseUppercase]);
 
   return (
@@ -49,7 +39,7 @@ export default function Home() {
       <title>ByteCrate - Password Generator</title>
       <main>
         <h1>PASSWORD GENERATOR</h1>
-        <section>
+        <div>
           <input type="text" value={password} readOnly />
           <button
             onClick={() => {
@@ -58,11 +48,7 @@ export default function Home() {
           >
             COPY
           </button>
-          <div>
-            <input type="range" id="passwordStrength" min="0" max="4" value={passwordStrength} readOnly />
-            <label htmlFor="passwordStrength">{passwordStrengthText}</label>
-          </div>
-        </section>
+        </div>
         <section>
           <div>
             <NumberInput
@@ -91,6 +77,13 @@ export default function Home() {
             checked={useSpecialCharacters}
             setChecked={setUseSpecialCharacters}
           />
+        </section>
+        <section>
+          <label htmlFor="passwordStrength">Password Strength</label>
+          <div className={styles.strengthSlider} id="passwordSlider" />
+          <label htmlFor="strengthText" id="strengthText" className={styles.strengthText}>
+            BAD
+          </label>
         </section>
       </main>
     </div>

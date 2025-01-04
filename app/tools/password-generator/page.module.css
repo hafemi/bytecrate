@@ -1,0 +1,13 @@
+.strengthSlider {
+  width: 25em;
+  height: 1em;
+  border-radius: 0.5em;
+  background-color: hsl(360, 66%, 55%);
+  position: relative;
+  margin: 0.5em 0;
+}
+
+.strengthText {
+  color: hsl(360, 66%, 55%);
+  font-size: 2em;
+}
