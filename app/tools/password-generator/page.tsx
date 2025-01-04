@@ -2,6 +2,7 @@
 import { CheckboxInput, NumberInput, RangeInput } from '@/components/common/inputs';
 import {
   generatePassword,
+  getStrengthScoreIndex,
   validateBoxes,
 } from '@/components/tools/password-generator/generation';
 import {
@@ -13,6 +14,8 @@ import { useEffect, useState } from 'react';
 export default function Home() {
   const [password, setPassword] = useState('');
   const [passwordLength, setPasswordLength] = useState('20');
+  const [passwordStrength, setPasswordStrength] = useState('2');
+  const [passwordStrengthText, setPasswordStrengthText] = useState(PasswordStrength[0]);
   const [useUppercase, setUseUppercase] = useState(true);
   const [useLowercase, setUseLowercase] = useState(true);
   const [useNumbers, setUseNumbers] = useState(true);
@@ -34,7 +37,11 @@ export default function Home() {
       useSpecialCharacters,
       passwordLength,
     });
+    const strengthScore = getStrengthScoreIndex(password);
+
     setPassword(password);
+    setPasswordStrength(strengthScore.toString());
+    setPasswordStrengthText(PasswordStrength[strengthScore]);
   }, [useUppercase, useLowercase, useNumbers, useSpecialCharacters, passwordLength, setPassword, setUseUppercase]);
 
   return (
@@ -51,6 +58,10 @@ export default function Home() {
           >
             COPY
           </button>
+          <div>
+            <input type="range" id="passwordStrength" min="0" max="4" value={passwordStrength} readOnly />
+            <label htmlFor="passwordStrength">{passwordStrengthText}</label>
+          </div>
         </section>
         <section>
           <div>

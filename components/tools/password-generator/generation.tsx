@@ -44,3 +44,38 @@ export function validateBoxes({
 
   setUseUppercase(true);
 }
+
+export function getStrengthScoreIndex(password: string): number {
+  let index = -1;
+
+  if (password.match(/[a-z]/)) {
+    index += 1;
+  }
+
+  if (password.match(/[A-Z]/)) {
+    index += 1;
+  }
+
+  if (password.match(/[0-9]/)) {
+    index += 1;
+  }
+
+  if (password.match(/[!@#$%^&*()_+[]{}?]/)) {
+    index += 1;
+  }
+  
+  index += Math.floor(password.length / 15);
+
+  // Ensure that the password has at least some complexity
+  if (index < 4 && password.length > 12) {
+    index += 1;
+  }
+  
+  if (index == -1) {
+    return 0;
+  } else if (index >= 4) {
+    return 4
+  } else {
+    return index
+  }
+}
