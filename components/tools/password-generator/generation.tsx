@@ -72,6 +72,9 @@ function getStrengthScore(password: string): number {
   if (password.match(/[0-9]/)) score += 1;
 
   if (password.match(/[!@#$%^&*()_+[]{}?]/)) score += 1;
+  
+  // mark it as weak if it doesn't have much complexity
+  if (score <= 2) return score
 
   score += Math.floor(password.length / 15);
 
