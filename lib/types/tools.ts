@@ -69,3 +69,5 @@ export interface Dimension {
   max: number;
   min: number;
 }
+
+export const PasswordStrength = ['BAD', 'WEAK', 'OKAY', 'GOOD', 'STRONG'];
