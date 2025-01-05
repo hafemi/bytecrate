@@ -3,6 +3,7 @@
 }
 
 .header {
+  padding-top: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,7 +28,6 @@
 }
 
 .headerLogoPadding {
-  padding-top: 5px;
   padding-left: 30px;
 }
 
