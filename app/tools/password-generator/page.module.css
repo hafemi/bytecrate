@@ -11,3 +11,42 @@
   color: hsl(360, 66%, 55%);
   font-size: 2em;
 }
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popupText {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 2s ease, visibility 2s ease;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.popup .show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup .hide {
+  visibility: hidden;
+  opacity: 0;
+}

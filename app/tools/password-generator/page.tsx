@@ -2,7 +2,8 @@
 import { CheckboxInput, NumberInput, RangeInput } from '@/components/common/inputs';
 import { generatePassword, updateStrengthColor, validateBoxes } from '@/components/tools/password-generator/generation';
 import { PWGenLengthRange } from '@/lib/constants/tools';
-import { useEffect, useState } from 'react';
+import { sleep } from '@/lib/utils';
+import { useEffect, useRef, useState } from 'react';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
   const [useLowercase, setUseLowercase] = useState(true);
   const [useNumbers, setUseNumbers] = useState(true);
   const [useSpecialCharacters, setUseSpecialCharacters] = useState(true);
+  const isRunning = useRef(false);
 
   useEffect(() => {
     validateBoxes({
@@ -34,6 +36,19 @@ export default function Home() {
     setPassword(password);
   }, [useUppercase, useLowercase, useNumbers, useSpecialCharacters, passwordLength, setPassword, setUseUppercase]);
 
+  const handleClick = async () => {
+    navigator.clipboard.writeText(password);
+    const popup = document.getElementById('copiedPopup');
+    if (!popup || isRunning.current) return;
+    isRunning.current = true;
+    popup.classList.add(styles.show);
+    await sleep(2000);
+    popup.classList.add(styles.hide);
+    await sleep(2000);
+    popup.classList.remove(styles.show, styles.hide);
+    isRunning.current = false;
+  };
+
   return (
     <div>
       <title>ByteCrate - Password Generator</title>
@@ -41,11 +56,10 @@ export default function Home() {
         <h1>PASSWORD GENERATOR</h1>
         <div>
           <input type="text" value={password} readOnly />
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(password);
-            }}
-          >
+          <button className={styles.popup} onClick={handleClick}>
+            <span className={styles.popupText} id="copiedPopup">
+              COPIED
+            </span>
             COPY
           </button>
         </div>
