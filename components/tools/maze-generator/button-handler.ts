@@ -1,10 +1,13 @@
 import {
-  Coordinate,
-  MazeCellValue,
-  MazeEntryAndExit,
-  MazeGenerationConfig,
   MazeMaxValues,
   MazeMinValues
+} from '@/lib/constants/tools';
+import {
+  Coordinate,
+  Dimension,
+  MazeCellValue,
+  MazeEntryAndExit,
+  MazeGenerationConfig
 } from '@/lib/types/tools';
 import {
   getRandomOddNumber,
@@ -12,7 +15,6 @@ import {
   turnToOddNumber,
   validateDimensions
 } from '@/lib/utils';
-import { Dimension } from '@/lib/types/tools';
 
 export function handleGenerationButtonClicked(values: MazeGenerationConfig): void {
   const dimensions: Dimension[] = [

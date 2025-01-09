@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import mainStyles from '@/app/page.module.css';
 import style from '@/components/common/styles.module.css';
+import React, { useState } from 'react';
 
 interface CheckboxInputProps {
   label: string;

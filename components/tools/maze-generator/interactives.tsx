@@ -1,8 +1,12 @@
 import mainStyles from '@/app/page.module.css';
 import pageStyles from '@/app/tools/maze-generator/page.module.css';
-import { NumberInput, ColorInput, CheckboxInput } from '@/components/common/inputs';
+import { CheckboxInput, ColorInput, NumberInput } from '@/components/common/inputs';
 import { MazeGenerator } from '@/components/tools/maze-generator/button-handler';
-import { MazeEntryAndExit, MazeMaxValues, MazeMinValues } from '@/lib/types/tools';
+import {
+  MazeMaxValues,
+  MazeMinValues
+} from '@/lib/constants/tools';
+import { MazeEntryAndExit } from '@/lib/types/tools';
 import React from 'react';
 
 interface InputFieldsProps {

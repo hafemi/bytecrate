@@ -1,4 +1,4 @@
-import { PWGenStrengthColor } from '@/lib/types/tools';
+import { PWGenStrengthColor } from '@/lib/constants/tools';
 
 export function generatePassword({
   useUppercase,

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { RPSChoices } from '@/lib/types/tools';
+import { RPSChoices } from '@/lib/constants/tools';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -34,7 +34,7 @@ export default function Home() {
       <title>ByteCrate - Rock Paper Scissors</title>
       <main className={styles.main}>
         <h1>ROCK PAPER SCISSORS</h1>
-        <p>It's dangerous to go alone, choose one of these:</p>
+        <p>Its dangerous to go alone, choose one of these:</p>
         <div className={styles.buttons}>
           <button onClick={() => handleClick('ROCK')}>ROCK</button>
           <button onClick={() => handleClick('PAPER')}>PAPER</button>
