@@ -17,8 +17,6 @@ export const PWGenLengthRange: Record<string, number> = {
   max: 512,
 };
 
-export const RPSChoices = ['ROCK', 'PAPER', 'SCISSORS'];
-
 // Weak (Red), Fair (Orange), Okay (Yellow), Good (Lightblue), Strong (Green)
 export const PWGenStrengthColor =
   ['#ff0000', '#eb8715', '#f0e446', '#16c8db', '#84f564'];

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { RPSChoices } from '@/lib/constants/tools';
+import { RPSChoices } from '@/lib/constants/games';
 import styles from './page.module.css';
 
 export default function Home() {
