@@ -26,5 +26,5 @@ export default function RootLayout({
 
 export const metadata: Metadata = {
   title: 'ByteCrate',
-  description: 'Collection of Games and Tools',
+  description: 'Library of Games and Tools',
 };

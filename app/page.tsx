@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       <title>ByteCrate - Homepage</title>
       <main>
-        <p>Collection of different Tools and Games</p>
+        <p>Library of different Tools and Games</p>
         <section>
           <h2>Tools</h2>
           <ul>
