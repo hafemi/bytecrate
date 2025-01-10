@@ -93,7 +93,7 @@ export default function Home() {
           />
         </section>
         <section>
-          <label htmlFor="passwordStrength">Password Strength</label>
+          <p id="passwordStrength">Password Strength</p>
           <div className={styles.strengthSlider} id="passwordSlider" />
           <p id="strengthText" className={styles.strengthText}>
             BAD
