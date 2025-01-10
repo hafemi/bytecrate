@@ -2,6 +2,11 @@ import { Footer, Header } from '@/components/root-layout';
 import { Metadata } from 'next';
 import './globals.css';
 import styles from './layout.module.css';
+import { Inter } from 'next/font/google'
+
+const inter = Inter({
+  subsets: ['latin'],
+});
 
 export default function RootLayout({
   children,
@@ -10,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={styles.page}>
+      <body className={`${styles.page} ${inter.className}`}>
         <Header />
         <div className={styles.main}>{children}</div>
         <Footer />
