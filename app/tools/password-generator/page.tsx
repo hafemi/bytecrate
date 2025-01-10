@@ -1,8 +1,8 @@
 'use client';
 import { CheckboxInput, NumberInput, RangeInput } from '@/components/common/inputs';
 import { generatePassword, updateStrengthColor, validateBoxes } from '@/components/tools/password-generator/generation';
-import { PWGenLengthRange, PWMaxLength } from '@/lib/constants/tools';
-import { sleep, getNumberFromString } from '@/lib/utils';
+import { PWGenLengthRange } from '@/lib/constants/tools';
+import { getNumberFromString, sleep } from '@/lib/utils';
 import { useEffect, useRef, useState } from 'react';
 import styles from './page.module.css';
 
