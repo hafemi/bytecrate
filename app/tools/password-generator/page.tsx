@@ -42,9 +42,9 @@ export default function Home() {
     if (!popup || isRunning.current) return;
     isRunning.current = true;
     popup.classList.add(styles.show);
-    await sleep(2000);
+    await sleep(1500);
     popup.classList.add(styles.hide);
-    await sleep(2000);
+    await sleep(1000);
     popup.classList.remove(styles.show, styles.hide);
     isRunning.current = false;
   };
