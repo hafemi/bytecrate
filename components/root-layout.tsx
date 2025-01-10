@@ -35,6 +35,9 @@ const HeaderNavigation = () => {
 
       <div className={styles.dropdown}>
         <p>Games</p>
+        <div className={styles.dropdownContent}>
+          <Link href="/games/rock-paper-scissors">Rock Paper Scissors</Link>
+        </div>
       </div>
     </nav>
   );
