@@ -34,7 +34,7 @@ export default function Home() {
 
     updateStrengthColor(password);
     setPassword(password);
-  }, [useUppercase, useLowercase, useNumbers, useSpecialCharacters, passwordLength, setPassword, setUseUppercase]);
+  }, [useUppercase, useLowercase, useNumbers, useSpecialCharacters, passwordLength]);
 
   const handleClick = async () => {
     navigator.clipboard.writeText(password);
