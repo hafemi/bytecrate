@@ -55,7 +55,7 @@ export default function Home() {
       <main>
         <h1>PASSWORD GENERATOR</h1>
         <div>
-          <input type="text" value={password} readOnly />
+          <input id="password" type="text" value={password} readOnly />
           <button className={styles.popup} onClick={handleClick}>
             <span className={styles.popupText} id="copiedPopup">
               COPIED
@@ -95,9 +95,9 @@ export default function Home() {
         <section>
           <label htmlFor="passwordStrength">Password Strength</label>
           <div className={styles.strengthSlider} id="passwordSlider" />
-          <label htmlFor="strengthText" id="strengthText" className={styles.strengthText}>
+          <p id="strengthText" className={styles.strengthText}>
             BAD
-          </label>
+          </p>
         </section>
       </main>
     </div>
