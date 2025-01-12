@@ -10,7 +10,7 @@
   align-items: flex-start;
   justify-content: space-between;
   padding: 0 50px;
-  max-width: 70em;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -27,6 +27,7 @@
 .buttonGroup {
   display: flex;
   justify-content: center;
+  gap: 20px;
 }
 
 .mazeContainer {

@@ -10,11 +10,6 @@
     color-scheme: dark;
   }
 }
-
-:root {
-  --input-background-color: #ffffff; /* Or any other colors you desire */
-  --input-border-color: #ccc;
-}
  
 @media (prefers-color-scheme: dark) {
   :root {
@@ -57,20 +52,18 @@ input::placeholder {
 }
 
 button {
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  border: none;
   padding: 10px 20px;
-  font-size: 1em;
+  font-size: 16px;
+  text-align: center;
+  background: none;
+  border: 2px solid #00d8ff;
+  border-radius: 7px;
   cursor: pointer;
-  border-radius: 50px;
-  transition: background-color 0.3s;
-  margin-right: 15px;
-  margin-left: 15px;
+  transition: all 0.3s ease-in-out;
 }
 
 button:hover {
-  background-color: #8f8f8f;
+  box-shadow: 0 0 10px #4ec8ff; /* Glow effect */
 }
 
 ul, ol {
@@ -88,4 +81,5 @@ h1 {
   align-items: center;
   margin-top: 60px;
   margin-bottom: 60px;
+  color: #4ec8ff
 }

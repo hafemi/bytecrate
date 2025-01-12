@@ -1,12 +1,17 @@
 .colorInput {
-  border-radius: 7px;
-  border: 1px solid #ccc;
+  border: none;
+  height: 30px;
+  width: 30px;
+}
+
+.colorInput::-webkit-color-swatch-wrapper {
+  padding: 0;
 }
 
 .numberInput {
   font-size: 1em;
   padding: 10px;
   border-radius: 7px;
-  border: 1px solid #ccc;
-  width: 6em;
+  border: 2px solid #4ec8ff;
+  width: 80px;
 }
