@@ -30,7 +30,7 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.page}>
+    <div>
       <title>ByteCrate - Rock Paper Scissors</title>
       <main className={styles.main}>
         <h1>ROCK PAPER SCISSORS</h1>
