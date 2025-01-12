@@ -105,7 +105,7 @@ export default function Home() {
           </button>
         </div>
         <div className={styles.mazeContainer}>
-          <canvas id="mazeCanvas" width={500} height={500}></canvas>
+          <canvas id="mazeCanvas" width={0} height={0}></canvas>
         </div>
       </main>
     </div>
