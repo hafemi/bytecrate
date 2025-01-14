@@ -15,3 +15,7 @@
   border: 2px solid #4ec8ff;
   width: 80px;
 }
+
+.checkboxInput {
+  accent-color: #4ec8ff;
+}

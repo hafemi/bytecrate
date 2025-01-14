@@ -52,9 +52,24 @@
   animation: fadeInUp 0.5s;
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #2C2C2C;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.dropdownContent a {
+  color: white;
+  padding: 12px 16px;
+  display: block;
+  font-size: 0.5em;
+}
+
+.dropdownContent a:hover {
+  background-color: #4EC8FF;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
 }
 
 @-webkit-keyframes fadeInUp {
@@ -77,19 +92,4 @@
     transform: translateY(0%);
     opacity: 1;
   }
-}
-
-.dropdownContent a {
-  color: black;
-  padding: 12px 16px;
-  display: block;
-  font-size: 0.6em;
-}
-
-.dropdownContent a:hover {
-  background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdownContent {
-  display: block;
 }

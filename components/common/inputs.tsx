@@ -58,7 +58,7 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = React.memo(function C
   return (
     <div className={divData}>
       <label htmlFor={id}>{label}</label>
-      <input type="checkbox" id={id} checked={checked} onChange={handleChange} />
+      <input className={style.checkboxInput}type="checkbox" id={id} checked={checked} onChange={handleChange} />
     </div>
   );
 });
