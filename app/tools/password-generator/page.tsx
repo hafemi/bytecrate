@@ -57,11 +57,11 @@ export default function Home() {
       <title>ByteCrate - Password Generator</title>
       <main>
         <h1>PASSWORD GENERATOR</h1>
-        <div>
+        <div className={styles.copyContainer}>
           <TextInput
             label=""
             id="password"
-            placeholder="Generated Password"
+            placeholder=""
             value={password}
             setValue={setPassword}
             readonly
@@ -74,7 +74,7 @@ export default function Home() {
           </button>
         </div>
         <section>
-          <div>
+          <div className={styles.lengthSelectors}>
             <NumberInput
               label="Password Length"
               id="passwordLength"
@@ -82,6 +82,7 @@ export default function Home() {
               max={PWGenLengthRange.max}
               value={passwordLength}
               setValue={setPasswordLength}
+              divData={styles.passwordInputSpace}
             />
             <RangeInput
               label=""
@@ -92,21 +93,22 @@ export default function Home() {
               setValue={setPasswordLength}
             />
           </div>
-          <CheckboxInput label="Uppercase" id="useUppercase" checked={useUppercase} setChecked={setUseUppercase} />
-          <CheckboxInput label="Lowercase" id="useLowercase" checked={useLowercase} setChecked={setUseLowercase} />
-          <CheckboxInput label="Numbers" id="useNumbers" checked={useNumbers} setChecked={setUseNumbers} />
-          <CheckboxInput
-            label="Special characters"
-            id="useSpecialCharacters"
-            checked={useSpecialCharacters}
-            setChecked={setUseSpecialCharacters}
-          />
+          <div className={styles.checkboxContainer}>
+            <CheckboxInput label="Uppercase" id="useUppercase" checked={useUppercase} setChecked={setUseUppercase} />
+            <CheckboxInput label="Lowercase" id="useLowercase" checked={useLowercase} setChecked={setUseLowercase} />
+            <CheckboxInput label="Numbers" id="useNumbers" checked={useNumbers} setChecked={setUseNumbers} />
+            <CheckboxInput
+              label="Special characters"
+              id="useSpecialCharacters"
+              checked={useSpecialCharacters}
+              setChecked={setUseSpecialCharacters}
+            />
+          </div>
         </section>
-        <section>
-          <p id="passwordStrength">Password Strength</p>
+        <section className={styles.strengthContainer}>
           <div className={styles.strengthSlider} id="passwordSlider" />
           <p id="strengthText" className={styles.strengthText}>
-            BAD
+            Weak
           </p>
         </section>
       </main>
