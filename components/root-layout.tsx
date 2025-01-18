@@ -14,7 +14,7 @@ export const Header = () => {
 const HeaderLogo = () => {
   return (
     <div className={`${styles.logoContainer} ${styles.headerLogoPadding}`}>
-      <Image src="/assets/bytecraft_logo.png" alt="ByteCrate logo" width={70} height={70} />
+      <Image src="/assets/bytecrate_logo.png" alt="ByteCrate logo" width={50} height={50} />
       <p>ByteCrate</p>
     </div>
   );
@@ -55,7 +55,7 @@ export const Footer = () => {
 const FooterLogo = () => {
   return (
     <div className={styles.logoContainer}>
-      <Image src="/assets/bytecraft_logo.png" alt="ByteCrate logo" width={50} height={50} />
+      <Image src="/assets/bytecrate_logo.png" alt="ByteCrate logo" width={40} height={40} />
       <p>ByteCrate</p>
     </div>
   );
