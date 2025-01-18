@@ -1,7 +1,5 @@
 .userInputContainer {
-  display: flex;
-  flex-direction: column; /* Stack inputs vertically */
-  align-items: top;
+  align-items: center;
   padding: 20px;
 }
 
