@@ -42,6 +42,17 @@ interface RangeInputProps {
   divData?: string;
 }
 
+interface TextInputProps {
+  label: string;
+  id: string;
+  placeholder: string;
+  value: string;
+  readonly: boolean;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  divData?: string;
+}
+
 export const CheckboxInput: React.FC<CheckboxInputProps> = React.memo(function CheckboxInput({
   label,
   id,
@@ -58,7 +69,7 @@ export const CheckboxInput: React.FC<CheckboxInputProps> = React.memo(function C
   return (
     <div className={divData}>
       <label htmlFor={id}>{label}</label>
-      <input className={style.checkboxInput}type="checkbox" id={id} checked={checked} onChange={handleChange} />
+      <input className={style.checkboxInput} type="checkbox" id={id} checked={checked} onChange={handleChange} />
     </div>
   );
 });
@@ -145,6 +156,37 @@ export const RangeInput: React.FC<RangeInputProps> = React.memo(function RangeIn
     <div className={divData}>
       <label htmlFor={id}>{label}</label>
       <input type="range" id={id} min={min} max={max} value={value === '' ? min : value} onChange={handleChange} />
+    </div>
+  );
+});
+
+export const TextInput: React.FC<TextInputProps> = React.memo(function TextInput({
+  label,
+  id,
+  placeholder,
+  value,
+  readonly,
+  setValue,
+  onChange,
+  divData,
+}) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+    if (onChange) onChange(e);
+  };
+
+  return (
+    <div className={divData}>
+      <label htmlFor={id}>{label}</label>
+      <input
+        className={style.textInput}
+        type="text"
+        id={id}
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+        readOnly={readonly}
+      />
     </div>
   );
 });

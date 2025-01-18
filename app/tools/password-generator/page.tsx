@@ -1,5 +1,5 @@
 'use client';
-import { CheckboxInput, NumberInput, RangeInput } from '@/components/common/inputs';
+import { CheckboxInput, NumberInput, RangeInput, TextInput } from '@/components/common/inputs';
 import { generatePassword, updateStrengthColor, validateBoxes } from '@/components/tools/password-generator/generation';
 import { PWGenLengthRange } from '@/lib/constants/tools';
 import { getNumberFromString, sleep } from '@/lib/utils';
@@ -58,7 +58,14 @@ export default function Home() {
       <main>
         <h1>PASSWORD GENERATOR</h1>
         <div>
-          <input id="password" type="text" value={password} readOnly />
+          <TextInput
+            label=""
+            id="password"
+            placeholder="Generated Password"
+            value={password}
+            setValue={setPassword}
+            readonly
+          />
           <button className={styles.popup} onClick={handleClick}>
             <span className={styles.popupText} id="copiedPopup">
               COPIED

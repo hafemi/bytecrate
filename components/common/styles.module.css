@@ -19,3 +19,12 @@
 .checkboxInput {
   accent-color: #4ec8ff;
 }
+
+.textInput {
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  background: none;
+  border: 2px solid #00d8ff;
+  border-radius: 7px;
+}
