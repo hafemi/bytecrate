@@ -17,6 +17,6 @@ export const PWGenLengthRange: Record<string, number> = {
   max: 512,
 };
 
-// Weak (Red), Fair (Orange), Okay (Yellow), Good (Lightblue), Strong (Green)
+// Weak (Red), Fair (Orange), Okay (Yellow), Good (Lightblue), Strong (Green), Excellent (Violet)
 export const PWGenStrengthColor =
-  ['#ff0000', '#eb8715', '#f0e446', '#16c8db', '#84f564'];
+  ['#ff0000', '#eb8715', '#f0e446', '#16c8db', '#84f564', '#b764f5'];

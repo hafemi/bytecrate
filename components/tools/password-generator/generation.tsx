@@ -62,23 +62,22 @@ export function updateStrengthColor(password: string): void {
 
 function getStrengthScore(password: string): number {
   let score = 0;
-
+  
   if (password.length < 8) return 0;
 
-  if (password.match(/[a-z]/)) score += 1;
-
-  if (password.match(/[A-Z]/)) score += 1;
-
-  if (password.match(/[0-9]/)) score += 1;
-
-  if (password.match(/[!@#$%^&*()_+[]{}?]/)) score += 1;
+  if (/[a-z]/.test(password)) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[!@#$%^&*()_+[\]{}?]/.test(password)) score++;
   
-  // mark it as weak if it doesn't have much complexity
-  if (score <= 2) return score
+  if (score <= 2 && password.length < 16) return 0; // mark as weak if not much complexity/length
+  if (score == 4 && password.length < 16) return 3; // mark as good if not long enough
+  if (password.length >= 64) {
+    if (score == 4 || score == 3 && password.length >= 80) return 5; // mark as excellent if complex & long or strong and very long
+    if (score == 3) return 4; // mark as strong if long enough
+  }
 
-  score += Math.floor(password.length / 15);
-
-  return score >= 4 ? 4 : score;
+  return score
 }
 
 function getStrengthText(score: number): string {
@@ -93,6 +92,8 @@ function getStrengthText(score: number): string {
       return 'Good';
     case 4:
       return 'Strong';
+    case 5:
+      return 'Excellent';
     default:
       return 'Unknown';
   }
