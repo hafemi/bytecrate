@@ -1,6 +1,6 @@
 import mainStyles from '@/app/page.module.css';
 import style from '@/components/common/styles.module.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface CheckboxInputProps {
   label: string;
@@ -106,17 +106,25 @@ export const NumberInput: React.FC<NumberInputProps> = React.memo(function Numbe
   divData,
 }) {
   const [isValid, setIsValid] = useState(true);
+  
+  const validateValue = (value: string, min: number, max: number) => {
+    const newValueInt = parseInt(value, 10);
+    setIsValid(value === '' || (newValueInt >= min && newValueInt <= max));
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
+    validateValue(newValue, min, max);
 
-    const newValueInt = parseInt(newValue, 10);
-    setIsValid(newValue === '' || (newValueInt >= min && newValueInt <= max));
     if (isValid && onChange) {
       onChange(e);
     }
   };
+  
+  useEffect(() => {
+    validateValue(value, min, max);
+  }, [value, min, max]);
 
   return (
     <div className={divData}>
