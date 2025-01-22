@@ -13,7 +13,6 @@ export default function Home() {
   const [useLowercase, setUseLowercase] = useState(true);
   const [useNumbers, setUseNumbers] = useState(true);
   const [useSpecialCharacters, setUseSpecialCharacters] = useState(true);
-  const isPopupActive = useRef(false);
 
   useEffect(() => {
     const Length = getNumberFromString(passwordLength);
@@ -38,6 +37,16 @@ export default function Home() {
     updateStrengthColor(password);
     setPassword(password);
   }, [useUppercase, useLowercase, useNumbers, useSpecialCharacters, passwordLength]);
+  
+  const handleCopy = async () => { 
+    navigator.clipboard.writeText(password);
+    const popup = document.getElementById('copiedPopup');
+    if (!popup) return;
+
+    popup.classList.add(styles.show);
+    await sleep(1000);
+    popup.classList.remove(styles.show);
+  }
 
   return (
     <div>
@@ -53,7 +62,7 @@ export default function Home() {
             setValue={setPassword}
             readonly
           />
-          <button className={styles.popup} onClick={() => { handleCopy(password, isPopupActive); }}>
+          <button className={styles.popup} onClick={handleCopy}>
             <span className={styles.popupText} id="copiedPopup">
               COPIED
             </span>
@@ -101,18 +110,4 @@ export default function Home() {
       </main>
     </div>
   );
-}
-
-async function handleCopy(password: string, isPopupActive: React.MutableRefObject<boolean>): Promise<void> {
-  navigator.clipboard.writeText(password);
-  const popup = document.getElementById('copiedPopup');
-  if (!popup || isPopupActive.current) return;
-
-  isPopupActive.current = true;
-  popup.classList.add(styles.show);
-  await sleep(1500);
-  popup.classList.add(styles.hide);
-  await sleep(1000);
-  popup.classList.remove(styles.show, styles.hide);
-  isPopupActive.current = false;
 }
