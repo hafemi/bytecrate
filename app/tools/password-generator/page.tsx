@@ -3,7 +3,7 @@ import { CheckboxInput, NumberInput, RangeInput, TextInput } from '@/components/
 import { generatePassword, updateStrengthColor, validateBoxes } from '@/components/tools/password-generator/generation';
 import { PWGenLengthRange } from '@/lib/constants/tools';
 import { getNumberFromString, sleep } from '@/lib/utils';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './page.module.css';
 
 export default function Home() {
