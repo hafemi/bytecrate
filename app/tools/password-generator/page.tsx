@@ -13,7 +13,7 @@ export default function Home() {
   const [useLowercase, setUseLowercase] = useState(true);
   const [useNumbers, setUseNumbers] = useState(true);
   const [useSpecialCharacters, setUseSpecialCharacters] = useState(true);
-  const isRunning = useRef(false);
+  const isPopupActive = useRef(false);
 
   useEffect(() => {
     const Length = getNumberFromString(passwordLength);
@@ -39,19 +39,6 @@ export default function Home() {
     setPassword(password);
   }, [useUppercase, useLowercase, useNumbers, useSpecialCharacters, passwordLength]);
 
-  const handleClick = async () => {
-    navigator.clipboard.writeText(password);
-    const popup = document.getElementById('copiedPopup');
-    if (!popup || isRunning.current) return;
-    isRunning.current = true;
-    popup.classList.add(styles.show);
-    await sleep(1500);
-    popup.classList.add(styles.hide);
-    await sleep(1000);
-    popup.classList.remove(styles.show, styles.hide);
-    isRunning.current = false;
-  };
-
   return (
     <div>
       <title>ByteCrate - Password Generator</title>
@@ -66,7 +53,7 @@ export default function Home() {
             setValue={setPassword}
             readonly
           />
-          <button className={styles.popup} onClick={handleClick}>
+          <button className={styles.popup} onClick={() => { handleCopy(password, isPopupActive); }}>
             <span className={styles.popupText} id="copiedPopup">
               COPIED
             </span>
@@ -114,4 +101,18 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+async function handleCopy(password: string, isPopupActive: React.MutableRefObject<boolean>): Promise<void> {
+  navigator.clipboard.writeText(password);
+  const popup = document.getElementById('copiedPopup');
+  if (!popup || isPopupActive.current) return;
+
+  isPopupActive.current = true;
+  popup.classList.add(styles.show);
+  await sleep(1500);
+  popup.classList.add(styles.hide);
+  await sleep(1000);
+  popup.classList.remove(styles.show, styles.hide);
+  isPopupActive.current = false;
 }
